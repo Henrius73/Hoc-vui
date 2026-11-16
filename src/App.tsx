@@ -27,19 +27,17 @@ function Shell({ children }: { children: React.ReactNode }) {
   const isHome = pathname === '/'
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/85 text-white backdrop-blur supports-[backdrop-filter]:bg-slate-950/70">
+      <header className="sticky top-0 z-20 border-b-2 border-[#1a1a2e]/10 bg-[#fffdf8]/90 backdrop-blur supports-[backdrop-filter]:bg-[#fffdf8]/75">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
           <Link to="/" className="group inline-flex items-center rounded-lg focus-visible:outline-offset-4">
-            <span className="text-xl font-extrabold tracking-tight sm:text-2xl">
-              <span className="bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
-                Học Vui
-              </span>
+            <span className="text-xl font-extrabold tracking-tight text-[#1a1a2e] sm:text-2xl">
+              Học <span className="text-teal-700">Vui</span>
             </span>
           </Link>
           {!isHome && (
             <Link
               to="/"
-              className="ml-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+              className="ml-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold text-[#5c5f6e] transition-colors hover:bg-teal-50 hover:text-teal-800"
             >
               <IconArrowLeft width={16} height={16} /> Trang chủ
             </Link>

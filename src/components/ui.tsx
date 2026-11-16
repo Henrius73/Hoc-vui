@@ -2,15 +2,15 @@ import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
 
 const BTN = {
   primary:
-    'bg-indigo-600 text-white shadow-sm shadow-indigo-600/20 hover:bg-indigo-700 hover:shadow-indigo-600/25',
+    'bg-teal-700 text-white shadow-md shadow-teal-800/20 hover:bg-teal-800 hover:shadow-teal-800/30',
   success:
-    'bg-emerald-600 text-white shadow-sm shadow-emerald-600/20 hover:bg-emerald-700 hover:shadow-emerald-600/25',
-  amber: 'bg-amber-600 text-white shadow-sm shadow-amber-600/20 hover:bg-amber-700',
-  dark: 'bg-slate-900 text-white shadow-sm shadow-slate-900/20 hover:bg-slate-800',
+    'bg-orange-500 text-white shadow-md shadow-orange-600/25 hover:bg-orange-600',
+  amber: 'bg-amber-500 text-amber-950 shadow-md hover:bg-amber-400',
+  dark: 'bg-[#1a1a2e] text-white shadow-md hover:bg-[#2d2d44]',
   outline:
-    'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-slate-400 shadow-sm',
-  danger: 'bg-white text-rose-700 border border-rose-200 hover:bg-rose-50 hover:border-rose-300',
-  ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+    'bg-white text-[#1a1a2e] border-2 border-[#1a1a2e]/15 hover:border-teal-700 hover:text-teal-800 shadow-sm',
+  danger: 'bg-white text-rose-700 border-2 border-rose-200 hover:bg-rose-50',
+  ghost: 'bg-transparent text-[#5c5f6e] hover:bg-black/5 hover:text-[#1a1a2e]',
 } as const
 
 const SIZE = {
@@ -27,7 +27,7 @@ export function btnClass(
   size: ButtonSize = 'md',
   extra = '',
 ): string {
-  return `inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100 disabled:shadow-none ${BTN[variant]} ${SIZE[size]} ${extra}`
+  return `inline-flex items-center justify-center gap-2 font-semibold tracking-tight transition-all duration-200 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100 disabled:shadow-none ${BTN[variant]} ${SIZE[size]} ${extra}`
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -42,7 +42,7 @@ export function Button({ variant = 'primary', size = 'md', className = '', ...re
 export function Card({ children, className = '', ...rest }: HTMLAttributes<HTMLElement>) {
   return (
     <section
-      className={`rounded-2xl border border-slate-200/80 bg-white shadow-sm shadow-slate-200/40 ${className}`}
+      className={`rounded-2xl border-2 border-[#1a1a2e]/10 bg-white shadow-[4px_4px_0_0_rgba(26,26,46,0.08)] ${className}`}
       {...rest}
     >
       {children}
@@ -52,8 +52,8 @@ export function Card({ children, className = '', ...rest }: HTMLAttributes<HTMLE
 
 export function StepTitle({ n, children }: { n: number; children: ReactNode }) {
   return (
-    <h2 className="flex items-center gap-2.5 text-base font-semibold text-slate-900 sm:text-lg">
-      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-indigo-600 text-xs font-bold text-white shadow-sm shadow-indigo-600/30">
+    <h2 className="flex items-center gap-2.5 text-base font-semibold text-[#1a1a2e] sm:text-lg">
+      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-teal-700 text-xs font-bold text-white shadow-sm shadow-teal-700/30">
         {n}
       </span>
       {children}
@@ -120,10 +120,10 @@ export function PageHeader({
     <div className="flex flex-wrap items-end justify-between gap-4">
       <div>
         {eyebrow && (
-          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-600">{eyebrow}</p>
+          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-teal-700">{eyebrow}</p>
         )}
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{title}</h1>
-        {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-slate-600">{desc}</p>}
+        <h1 className="text-2xl font-extrabold tracking-tight text-[#1a1a2e] sm:text-3xl">{title}</h1>
+        {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-[#5c5f6e]">{desc}</p>}
       </div>
       {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
     </div>
