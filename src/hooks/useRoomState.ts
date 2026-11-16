@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { supabase, rpc } from '../lib/supabase'
 import type { HostState, RoomState } from '../lib/types'
 
@@ -39,31 +39,43 @@ export function useRoomState<T extends RoomState | HostState = RoomState>(
     }
   }, [code, opts.host, opts.hostToken, opts.playerId])
 
-  const loadRef = useRef(load)
-  loadRef.current = load
+  useEffect(() => {
+    load()
+    const poll = opts.pollMs ? setInterval(load, opts.pollMs) : 0
+    return () => {
+      if (poll) clearInterval(poll)
+    }
+  }, [load, opts.pollMs])
+
+  const roomId = state?.room_id
 
   useEffect(() => {
-    loadRef.current()
     const sb = supabase
     if (!sb) return
-    const refresh = () => loadRef.current()
+
     const ch = sb.channel(`room:${code}`)
     ch.on(
       'postgres_changes',
       { event: 'UPDATE', schema: 'public', table: 'rooms', filter: `code=eq.${code}` },
-      refresh,
+      () => {
+        load()
+      },
     )
-    ch.on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'players' }, refresh)
+    if (roomId) {
+      ch.on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'players', filter: `room_id=eq.${roomId}` },
+        () => {
+          load()
+        },
+      )
+    }
     ch.subscribe()
-    const poll = opts.pollMs ? setInterval(refresh, opts.pollMs) : 0
+
     return () => {
-      if (poll) clearInterval(poll)
       sb.removeChannel(ch)
     }
-    // pollMs ổn định theo từng trang (host 2s, student 3s)
-  }, [code, opts.pollMs])
+  }, [code, roomId, load])
 
-  const refresh = useCallback(() => loadRef.current(), [])
-
-  return { state, error, loading, refresh }
+  return { state, error, loading, refresh: load }
 }
