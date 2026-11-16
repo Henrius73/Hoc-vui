@@ -1,101 +1,66 @@
-import type { ComponentType, CSSProperties, SVGProps } from 'react'
-import { Link } from 'react-router'
-import { IconBoard, IconPlay } from '../components/icons'
-import { Card, btnClass } from '../components/ui'
-
-function RoleCard({
-  to,
-  icon: Icon,
-  tone,
-  title,
-  cta,
-  delay = 0,
-}: {
-  to: string
-  icon: ComponentType<SVGProps<SVGSVGElement>>
-  tone: 'indigo' | 'emerald'
-  title: string
-  cta: string
-  delay?: number
-}) {
-  const styles =
-    tone === 'indigo'
-      ? {
-          icon: 'bg-violet-500/15 text-violet-300 ring-1 ring-violet-500/30',
-          variant: 'primary' as const,
-        }
-      : {
-          icon: 'bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30',
-          variant: 'success' as const,
-        }
-
-  return (
-    <Card
-      className="hover-lift fade-up group relative flex flex-col overflow-hidden p-6 sm:p-7"
-      style={{ animationDelay: `${delay}ms` } as CSSProperties}
-    >
-      <div
-        aria-hidden
-        className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl ${
-          tone === 'indigo' ? 'bg-violet-600/20' : 'bg-emerald-500/15'
-        }`}
-      />
-      <div className="relative">
-        <span className={`grid h-14 w-14 place-items-center rounded-2xl ${styles.icon}`}>
-          <Icon width={26} height={26} />
-        </span>
-        <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-white">{title}</h2>
-      </div>
-      <Link to={to} className={`relative mt-6 ${btnClass(styles.variant, 'lg', 'w-full')}`}>
-        {cta}
-      </Link>
-    </Card>
-  )
-}
+import { Card } from '../components/ui'
+import { JoinRoomForm } from '../components/JoinRoomForm'
+import { IconPlay, IconTrophy, IconUsers } from '../components/icons'
 
 export default function Home() {
   return (
-    <div className="relative mx-auto max-w-5xl space-y-8 px-4 py-10 sm:px-6 sm:py-16">
+    <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-14">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 overflow-hidden">
         <div className="absolute left-1/2 top-[-6rem] h-72 w-[36rem] -translate-x-1/2 rounded-full bg-violet-600/25 blur-3xl" />
       </div>
 
-      <section className="fade-up relative overflow-hidden rounded-[2rem] border border-zinc-800 bg-[#0e0e12] px-6 py-16 text-center shadow-2xl shadow-black/30 sm:px-10 sm:py-24">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-16 -top-16 h-56 w-56 rounded-full bg-violet-600/25 blur-3xl" />
-          <div className="absolute -right-10 top-10 h-48 w-48 rounded-full bg-orange-500/20 blur-3xl" />
-          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
-        </div>
-        <div className="relative mx-auto max-w-3xl">
-          <p className="mb-4 inline-flex rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-violet-200">
-            Quiz lớp học
-          </p>
-          <h1 className="text-6xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl">
+      <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <section className="fade-up space-y-6 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-violet-200">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
+            Trò chơi trắc nghiệm lớp học
+          </div>
+
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 bg-clip-text text-transparent">
               Học Vui
             </span>
           </h1>
-        </div>
-      </section>
 
-      <section className="grid gap-4 md:grid-cols-2">
-        <RoleCard
-          to="/host"
-          icon={IconBoard}
-          tone="indigo"
-          title="Giáo viên"
-          cta="Vào khu vực giáo viên"
-          delay={60}
-        />
-        <RoleCard
-          to="/join"
-          icon={IconPlay}
-          tone="emerald"
-          title="Học sinh"
-          cta="Vào phòng"
-          delay={120}
-        />
-      </section>
+          <p className="mx-auto max-w-lg text-base leading-relaxed text-zinc-300 sm:text-lg lg:mx-0">
+            Sẵn sàng thi đấu cùng cả lớp chưa? Nhập mã phòng 6 số từ giáo viên, chọn tên thật chất và chinh phục bảng xếp hạng!
+          </p>
+
+          <ul className="mx-auto grid max-w-lg grid-cols-1 gap-3 text-left sm:grid-cols-2 lg:mx-0">
+            <li className="flex items-center gap-3 rounded-2xl border border-zinc-800/80 bg-[#121216]/80 px-4 py-3">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30">
+                <IconUsers width={18} height={18} />
+              </span>
+              <span className="text-sm font-medium text-zinc-200">Vào ngay không cần tài khoản</span>
+            </li>
+            <li className="flex items-center gap-3 rounded-2xl border border-zinc-800/80 bg-[#121216]/80 px-4 py-3">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-amber-300 ring-1 ring-amber-500/30">
+                <IconTrophy width={18} height={18} />
+              </span>
+              <span className="text-sm font-medium text-zinc-200">Đúng mỗi câu +1000 điểm</span>
+            </li>
+          </ul>
+        </section>
+
+        <Card
+          className="fade-up overflow-hidden border-zinc-800 bg-[#0f0f14] p-0 shadow-2xl shadow-black/40"
+          style={{ animationDelay: '60ms' }}
+        >
+          <div className="flex items-center gap-3 border-b border-zinc-800 bg-gradient-to-r from-violet-600/15 via-transparent to-orange-500/10 px-6 py-5 sm:px-7">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-white/10">
+              <IconPlay width={22} height={22} />
+            </span>
+            <div>
+              <h2 className="text-lg font-extrabold tracking-tight text-white">Vào phòng chơi</h2>
+              <p className="text-xs text-zinc-400">Nhập mã 6 số đang chiếu trên bảng</p>
+            </div>
+          </div>
+
+          <div className="px-6 py-6 sm:px-7">
+            <JoinRoomForm />
+          </div>
+        </Card>
+      </div>
     </div>
   )
 }
