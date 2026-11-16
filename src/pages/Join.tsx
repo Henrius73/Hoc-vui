@@ -40,26 +40,29 @@ export default function Join() {
   }
 
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-10rem)] max-w-md items-center px-4 py-10 sm:px-6">
-      <Card className="fade-up w-full overflow-hidden p-0">
-        <div className="border-b-2 border-[#1a1a2e]/10 bg-gradient-to-br from-orange-50 via-white to-teal-50 px-6 py-6 text-center sm:px-8">
-          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/25 ring-4 ring-orange-100">
+    <div className="relative mx-auto flex min-h-[calc(100vh-10rem)] max-w-md items-center px-4 py-10 sm:px-6">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-10 -z-10 h-64">
+        <div className="mx-auto h-56 w-72 rounded-full bg-violet-600/20 blur-3xl" />
+      </div>
+      <Card className="fade-up w-full overflow-hidden border-zinc-800 bg-[#0f0f14] p-0 shadow-2xl shadow-black/40">
+        <div className="border-b border-zinc-800 bg-gradient-to-br from-violet-600/15 via-transparent to-orange-500/10 px-6 py-7 text-center sm:px-8">
+          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-white/10">
             <IconPlay width={26} height={26} />
           </span>
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-[#1a1a2e]">Tham gia phòng học</h1>
-          <p className="mt-1.5 text-sm text-[#5c5f6e]">Nhập mã 6 số mà giáo viên đang hiển thị trên màn hình</p>
+          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-white">Tham gia phòng học</h1>
+          <p className="mt-1.5 text-sm text-zinc-400">Nhập mã 6 số mà giáo viên đang hiển thị trên màn hình</p>
         </div>
 
         <div className="space-y-5 px-6 py-6 sm:px-8 sm:py-7">
           {existing && (
-            <p className="rounded-xl border-2 border-teal-100 bg-teal-50 px-3.5 py-3 text-sm text-teal-800">
+            <p className="rounded-xl border border-violet-500/30 bg-violet-500/10 px-3.5 py-3 text-sm text-violet-100">
               Bạn đã từng vào phòng này với tên <b>{existing.name}</b>. Bạn có thể vào lại.
             </p>
           )}
 
           <div className="space-y-4">
             <label className="block">
-              <span className="text-sm font-medium text-[#1a1a2e]">Mã phòng</span>
+              <span className="text-sm font-medium text-zinc-200">Mã phòng</span>
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
@@ -67,20 +70,20 @@ export default function Join() {
                 autoComplete="off"
                 placeholder="000000"
                 aria-label="Mã phòng 6 chữ số"
-                className="mt-1.5 w-full rounded-xl border-2 border-[#1a1a2e]/15 bg-white px-3 py-3 text-center font-mono text-3xl font-semibold tracking-[0.35em] text-[#1a1a2e] placeholder:text-slate-300 transition-colors focus:border-teal-600"
+                className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3 py-3 text-center font-mono text-3xl font-semibold tracking-[0.35em] text-white placeholder:text-zinc-600 transition-colors focus:border-violet-500 focus:ring-0"
               />
-              <span className="mt-1.5 block text-xs text-[#5c5f6e]">Gồm đúng 6 chữ số</span>
+              <span className="mt-1.5 block text-xs text-zinc-500">Gồm đúng 6 chữ số</span>
             </label>
             <label className="block">
-              <span className="text-sm font-medium text-[#1a1a2e]">Tên hiển thị</span>
+              <span className="text-sm font-medium text-zinc-200">Tên hiển thị</span>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value.slice(0, 20))}
                 placeholder="Ví dụ: Minh An"
                 maxLength={20}
-                className="mt-1.5 w-full rounded-xl border-2 border-[#1a1a2e]/15 bg-white px-3.5 py-3 text-[#1a1a2e] placeholder:text-slate-400 transition-colors focus:border-teal-600"
+                className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3.5 py-3 text-white placeholder:text-zinc-500 transition-colors focus:border-violet-500 focus:ring-0"
               />
-              <span className="mt-1.5 block text-xs text-[#5c5f6e]">Tối đa 20 ký tự, hiển thị với cả lớp</span>
+              <span className="mt-1.5 block text-xs text-zinc-500">Tối đa 20 ký tự, hiển thị với cả lớp</span>
             </label>
           </div>
 

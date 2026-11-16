@@ -20,14 +20,14 @@ const SAMPLE: ParsedQuestion[] = [
 ]
 
 const PHASE_LABEL: Record<Phase, { text: string; cls: string }> = {
-  lobby: { text: 'Đang chờ', cls: 'bg-slate-100 text-slate-700 ring-slate-200' },
-  question: { text: 'Đang chơi', cls: 'bg-indigo-50 text-indigo-700 ring-indigo-200' },
-  reveal: { text: 'Đã công bố', cls: 'bg-amber-50 text-amber-800 ring-amber-200' },
-  finished: { text: 'Đã kết thúc', cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
+  lobby: { text: 'Đang chờ', cls: 'bg-zinc-800 text-zinc-200 ring-zinc-700' },
+  question: { text: 'Đang chơi', cls: 'bg-violet-500/15 text-violet-300 ring-violet-500/30' },
+  reveal: { text: 'Đã công bố', cls: 'bg-amber-500/15 text-amber-300 ring-amber-500/30' },
+  finished: { text: 'Đã kết thúc', cls: 'bg-emerald-500/15 text-emerald-300 ring-emerald-500/30' },
 }
 
 const FILE_INPUT =
-  'block w-full cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50/70 px-4 py-6 text-center text-sm text-slate-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50/30 file:hidden'
+  'block w-full cursor-pointer rounded-xl border border-dashed border-zinc-700 bg-zinc-900/40 px-4 py-6 text-center text-sm text-zinc-400 transition-colors hover:border-violet-500/50 hover:bg-violet-500/5 file:hidden'
 
 export default function HostLibrary() {
   const nav = useNavigate()
@@ -142,57 +142,56 @@ export default function HostLibrary() {
 
       {err && <ErrorNote>{err}</ErrorNote>}
 
-      {/* 1. Thêm câu hỏi */}
       <Card className="overflow-hidden p-0">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/50 px-5 py-4 sm:px-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-900/40 px-5 py-4 sm:px-6">
           <StepTitle n={1}>Thêm bộ câu hỏi</StepTitle>
           <Button variant="outline" size="sm" onClick={downloadTemplate}>
             <IconDownload width={16} height={16} /> Tải file Excel mẫu
           </Button>
         </div>
         <div className="space-y-4 px-5 py-5 sm:px-6">
-          <p className="text-sm leading-relaxed text-slate-600">
-            Định dạng cột: <b className="text-slate-800">Câu hỏi · A · B · C · D · Đáp án đúng · Thời gian (giây)</b>.
+          <p className="text-sm leading-relaxed text-zinc-400">
+            Định dạng cột: <b className="text-zinc-200">Câu hỏi · A · B · C · D · Đáp án đúng · Thời gian (giây)</b>.
             Đáp án đúng ghi A/B/C/D (hoặc 1–4), thời gian 5–300 giây (mặc định 20s).
           </p>
           <label className="block">
             <span className="sr-only">Chọn file Excel câu hỏi</span>
             <input type="file" accept=".xlsx,.xls" onChange={(e) => onFile(e.target.files?.[0])} className={FILE_INPUT} />
-            <span className="mt-2 block text-center text-xs text-slate-500">Hỗ trợ .xlsx, .xls — nhấn để chọn file</span>
+            <span className="mt-2 block text-center text-xs text-zinc-500">Hỗ trợ .xlsx, .xls — nhấn để chọn file</span>
           </label>
 
           {preview && (
-            <div className="fade-up space-y-4 rounded-xl border border-indigo-200/70 bg-gradient-to-b from-indigo-50/50 to-white p-4 sm:p-5">
+            <div className="fade-up space-y-4 rounded-xl border border-violet-500/30 bg-violet-500/5 p-4 sm:p-5">
               <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700">Tên bộ câu hỏi</span>
+                  <span className="text-sm font-medium text-zinc-200">Tên bộ câu hỏi</span>
                   <input
                     value={preview.name}
                     onChange={(e) => setPreview({ ...preview, name: e.target.value })}
-                    className="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 focus:border-indigo-500"
+                    className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3.5 py-2.5 text-white focus:border-violet-500"
                   />
                 </label>
                 <div className="flex flex-wrap items-center gap-2 text-sm">
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
                     {preview.questions.length} câu hợp lệ
                   </span>
                   {preview.errors.length > 0 && (
-                    <span className="rounded-full bg-rose-50 px-3 py-1 font-semibold text-rose-700 ring-1 ring-rose-200">
+                    <span className="rounded-full bg-rose-500/15 px-3 py-1 font-semibold text-rose-300 ring-1 ring-rose-500/30">
                       {preview.errors.length} lỗi
                     </span>
                   )}
                 </div>
               </div>
 
-              <ul className="max-h-60 divide-y divide-slate-100 overflow-auto rounded-xl border border-slate-200 bg-white text-sm">
+              <ul className="max-h-60 divide-y divide-zinc-800 overflow-auto rounded-xl border border-zinc-800 bg-[#121216] text-sm">
                 {preview.questions.map((q, i) => (
                   <li key={i} className="flex gap-3 px-3.5 py-2.5">
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-slate-100 text-[11px] font-bold text-slate-600">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-zinc-800 text-[11px] font-bold text-zinc-300">
                       {i + 1}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="font-medium text-slate-800">{q.body}</span>
-                      <span className="ml-2 text-slate-500">
+                      <span className="font-medium text-zinc-100">{q.body}</span>
+                      <span className="ml-2 text-zinc-500">
                         · Đáp án {['A', 'B', 'C', 'D'][q.correct]} · {q.seconds}s
                       </span>
                     </span>
@@ -201,7 +200,7 @@ export default function HostLibrary() {
               </ul>
 
               {preview.errors.length > 0 && (
-                <ul className="space-y-1 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+                <ul className="space-y-1 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
                   {preview.errors.map((e, i) => (
                     <li key={i} className="flex gap-2">
                       <span aria-hidden>•</span>
@@ -225,9 +224,8 @@ export default function HostLibrary() {
       </Card>
 
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* 2. Thư viện */}
         <Card className="overflow-hidden p-0">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/50 px-5 py-4 sm:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-900/40 px-5 py-4 sm:px-6">
             <StepTitle n={2}>Bộ câu hỏi của tôi</StepTitle>
             <Button variant="outline" size="sm" onClick={createSample} disabled={busy}>
               + Tạo bộ mẫu
@@ -246,12 +244,12 @@ export default function HostLibrary() {
                 {quizzes.map((q) => (
                   <li
                     key={q.id}
-                    className="hover-lift flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white p-4"
+                    className="hover-lift flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-[#16161b] p-4"
                   >
                     <div className="min-w-0">
-                      <p className="truncate font-semibold text-slate-900">{q.name}</p>
-                      <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-slate-500">
-                        <span className="rounded-md bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700 ring-1 ring-indigo-100">
+                      <p className="truncate font-semibold text-white">{q.name}</p>
+                      <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-zinc-400">
+                        <span className="rounded-md bg-violet-500/15 px-2 py-0.5 text-xs font-semibold text-violet-300 ring-1 ring-violet-500/30">
                           {q.count} câu
                         </span>
                         <span>{new Date(q.created_at).toLocaleDateString('vi-VN')}</span>
@@ -272,9 +270,8 @@ export default function HostLibrary() {
           </div>
         </Card>
 
-        {/* 3. Lịch sử phòng */}
         <Card className="overflow-hidden p-0">
-          <div className="border-b border-slate-100 bg-slate-50/50 px-5 py-4 sm:px-6">
+          <div className="border-b border-zinc-800 bg-zinc-900/40 px-5 py-4 sm:px-6">
             <StepTitle n={3}>Phòng đã mở</StepTitle>
           </div>
           <div className="px-5 py-4 sm:px-6">
@@ -285,17 +282,17 @@ export default function HostLibrary() {
             ) : (
               <ul className="space-y-3">
                 {rooms.map((r) => (
-                  <li key={r.code} className="rounded-xl border border-slate-200/80 bg-white p-4">
+                  <li key={r.code} className="rounded-xl border border-zinc-800 bg-[#16161b] p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-mono text-lg font-bold tracking-wider text-slate-900">{r.code}</span>
+                          <span className="font-mono text-lg font-bold tracking-wider text-white">{r.code}</span>
                           <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${PHASE_LABEL[r.phase].cls}`}>
                             {PHASE_LABEL[r.phase].text}
                           </span>
                         </div>
-                        <p className="mt-1 truncate text-sm font-medium text-slate-700">{r.quiz}</p>
-                        <p className="mt-1 text-xs text-slate-500">
+                        <p className="mt-1 truncate text-sm font-medium text-zinc-300">{r.quiz}</p>
+                        <p className="mt-1 text-xs text-zinc-500">
                           {r.players} người · {new Date(r.created_at).toLocaleString('vi-VN')}
                         </p>
                       </div>

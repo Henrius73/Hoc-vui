@@ -9,11 +9,11 @@ import { Button, Card, ErrorNote, Loading } from '../components/ui'
 import { IconCheck, IconClock, IconTrophy, IconX } from '../components/icons'
 
 const RANK_TONE = [
-  'bg-amber-400 text-amber-950 ring-1 ring-amber-500/30',
-  'bg-slate-300 text-slate-800 ring-1 ring-slate-400/30',
-  'bg-orange-300 text-orange-900 ring-1 ring-orange-400/30',
+  'bg-amber-400 text-amber-950 ring-1 ring-amber-300/40',
+  'bg-zinc-300 text-zinc-900 ring-1 ring-zinc-200/40',
+  'bg-orange-400 text-orange-950 ring-1 ring-orange-300/40',
 ]
-const RANK_REST = 'bg-slate-100 text-slate-600'
+const RANK_REST = 'bg-zinc-700 text-zinc-200'
 
 export default function StudentRoom() {
   const { code = '' } = useParams()
@@ -75,18 +75,18 @@ function PlayerRoom({
     return (
       <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
         <Card className="fade-up overflow-hidden p-0 text-center">
-          <div className="border-b border-slate-100 bg-gradient-to-b from-indigo-50/70 to-white px-6 py-8 sm:px-10">
-            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-600/25">
+          <div className="border-b border-zinc-800 bg-gradient-to-b from-violet-600/15 to-transparent px-6 py-8 sm:px-10">
+            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-white/10">
               <IconClock width={26} height={26} />
             </span>
-            <h1 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Đang chờ bắt đầu</h1>
-            <p className="mt-2 text-sm text-slate-600">
-              Phòng <b className="rounded-md bg-white px-2 py-0.5 font-mono text-base text-slate-900 ring-1 ring-slate-200">{state.code}</b>
-              {' · '}Bạn là <b className="text-slate-900">{player.name}</b>
+            <h1 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">Đang chờ bắt đầu</h1>
+            <p className="mt-2 text-sm text-zinc-400">
+              Phòng <b className="rounded-md bg-zinc-800 px-2 py-0.5 font-mono text-base text-violet-300 ring-1 ring-zinc-700">{state.code}</b>
+              {' · '}Bạn là <b className="text-white">{player.name}</b>
             </p>
           </div>
           <div className="px-6 py-6 sm:px-10">
-            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-slate-500">
+            <div className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-zinc-400">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" aria-hidden />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden />
@@ -99,15 +99,15 @@ function PlayerRoom({
                   key={p.id}
                   className={`rounded-full border px-3.5 py-1.5 text-sm font-medium ${
                     p.id === player.id
-                      ? 'border-indigo-200 bg-indigo-50 text-indigo-800'
-                      : 'border-slate-200 bg-white text-slate-700'
+                      ? 'border-violet-500/40 bg-violet-500/15 text-violet-200'
+                      : 'border-zinc-700 bg-zinc-800/70 text-zinc-300'
                   }`}
                 >
                   {p.name}
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-sm text-slate-500">Giáo viên sẽ bắt đầu ván chơi trong giây lát…</p>
+            <p className="mt-5 text-sm text-zinc-500">Giáo viên sẽ bắt đầu ván chơi trong giây lát…</p>
           </div>
         </Card>
       </div>
@@ -118,30 +118,30 @@ function PlayerRoom({
     return (
       <div className="mx-auto max-w-2xl space-y-4 px-4 py-10 text-center sm:px-6">
         <div className="fade-up">
-          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-amber-100 text-amber-600 ring-8 ring-amber-50">
+          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-amber-500/15 text-amber-400 ring-1 ring-amber-500/30">
             <IconTrophy width={34} height={34} />
           </div>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">Hoàn thành!</h1>
-          <p className="mt-1 text-slate-600">Ván chơi đã kết thúc</p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-white">Hoàn thành!</h1>
+          <p className="mt-1 text-zinc-400">Ván chơi đã kết thúc</p>
         </div>
         <Card className="fade-up overflow-hidden p-0">
-          <div className="bg-gradient-to-b from-indigo-50/60 to-white px-6 py-6">
-            <p className="text-sm font-medium text-slate-500">Điểm của bạn</p>
-            <p className="mt-1 text-6xl font-bold tracking-tight text-indigo-700">{myScore}</p>
-            <p className="mt-2 inline-flex rounded-full bg-white px-3 py-1 text-sm font-medium text-slate-700 ring-1 ring-slate-200">
+          <div className="bg-gradient-to-b from-violet-600/15 to-transparent px-6 py-6">
+            <p className="text-sm font-medium text-zinc-400">Điểm của bạn</p>
+            <p className="mt-1 text-6xl font-bold tracking-tight text-violet-300">{myScore}</p>
+            <p className="mt-2 inline-flex rounded-full border border-zinc-700 bg-zinc-900/70 px-3 py-1 text-sm font-medium text-zinc-300">
               Đúng {state.mine?.my_correct ?? 0}/{state.total} câu
             </p>
           </div>
-          <div className="border-t border-slate-100 p-5 text-left sm:p-6">
-            <h2 className="mb-3 text-center text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Bảng xếp hạng</h2>
+          <div className="border-t border-zinc-800 p-5 text-left sm:p-6">
+            <h2 className="mb-3 text-center text-sm font-semibold tracking-[0.16em] text-zinc-500">Bảng xếp hạng</h2>
             <ol className="space-y-2">
               {state.players.map((p, i) => (
                 <li
                   key={p.id}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
                     p.id === player.id
-                      ? 'bg-indigo-50 font-semibold text-indigo-900 ring-1 ring-indigo-200/70'
-                      : 'bg-slate-50 text-slate-700'
+                      ? 'bg-violet-500/15 font-semibold text-violet-100 ring-1 ring-violet-500/30'
+                      : 'bg-zinc-800/50 text-zinc-300'
                   }`}
                 >
                   <span
@@ -172,10 +172,9 @@ function PlayerRoom({
 
   return (
     <div className="mx-auto max-w-3xl space-y-4 px-4 py-5 sm:px-6 sm:py-6">
-      {/* Thanh thông tin */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+          <span className="inline-flex items-center rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
             Câu {q.idx}/{state.total}
           </span>
           <span aria-hidden className="hidden items-center gap-1 sm:flex">
@@ -184,47 +183,44 @@ function PlayerRoom({
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i + 1 === q.idx
-                    ? 'w-7 bg-indigo-600'
+                    ? 'w-7 bg-violet-500'
                     : i + 1 < q.idx
-                      ? 'w-1.5 bg-indigo-300'
-                      : 'w-1.5 bg-slate-300'
+                      ? 'w-1.5 bg-violet-400/50'
+                      : 'w-1.5 bg-zinc-700'
                 }`}
               />
             ))}
           </span>
         </div>
-        <span className="shrink-0 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm">
-          {player.name} <span className="text-slate-400">·</span> <span className="text-indigo-700">{myScore} đ</span>
+        <span className="shrink-0 rounded-full border border-zinc-700 bg-zinc-900/80 px-3.5 py-1.5 text-sm font-semibold text-zinc-200 shadow-sm">
+          {player.name} <span className="text-zinc-600">·</span> <span className="text-violet-300">{myScore} đ</span>
         </span>
       </div>
 
-      {/* Đồng hồ */}
       {!reveal && (
-        <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3 shadow-sm">
+        <div className="rounded-2xl border border-zinc-800 bg-[#121216] px-4 py-3 shadow-sm">
           <div className="flex items-center justify-between text-sm font-semibold">
-            <span className={`inline-flex items-center gap-1.5 ${urgent ? 'text-rose-700 timer-pulse' : 'text-slate-700'}`}>
+            <span className={`inline-flex items-center gap-1.5 ${urgent ? 'text-rose-400 timer-pulse' : 'text-zinc-300'}`}>
               <IconClock width={16} height={16} /> Còn {secs}s
             </span>
-            <span className="text-xs font-medium text-slate-400 sm:text-sm">Hết giờ sẽ khóa trả lời</span>
+            <span className="text-xs font-medium text-zinc-500 sm:text-sm">Hết giờ sẽ khóa trả lời</span>
           </div>
-          <div aria-hidden className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-100 ring-1 ring-inset ring-slate-200/70">
+          <div aria-hidden className="mt-2 h-2.5 overflow-hidden rounded-full bg-zinc-800 ring-1 ring-inset ring-zinc-700/70">
             <div
-              className={`h-full rounded-full transition-all duration-200 ${urgent ? 'bg-rose-500' : 'bg-indigo-600'}`}
+              className={`h-full rounded-full transition-all duration-200 ${urgent ? 'bg-rose-500' : 'bg-violet-500'}`}
               style={{ width: `${pct}%` }}
             />
           </div>
         </div>
       )}
 
-      {/* Câu hỏi */}
       <Card key={q.idx} className="fade-up relative overflow-hidden p-6 sm:p-8">
-        <div aria-hidden className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500" />
-        <h1 className="text-center text-xl font-semibold leading-snug text-slate-900 sm:text-2xl lg:text-[1.7rem]">
+        <div aria-hidden className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-400" />
+        <h1 className="text-center text-xl font-semibold leading-snug text-white sm:text-2xl lg:text-[1.7rem]">
           {q.body}
         </h1>
       </Card>
 
-      {/* Lựa chọn */}
       <div className="grid gap-3 sm:grid-cols-2">
         {[q.a, q.b, q.c, q.d].map((text, i) => {
           const mode = reveal && q.correct === i ? 'correct' : reveal && state.mine?.choice === i ? 'wrong' : 'normal'
@@ -236,8 +232,8 @@ function PlayerRoom({
               onClick={() => submit(i)}
               disabled={reveal || state.phase !== 'question' || answered}
               className={`pop-in group flex min-h-[4.5rem] items-center gap-3 rounded-2xl px-4 py-3.5 text-left shadow-sm transition-all duration-200 ease-out disabled:cursor-default sm:text-lg ${bg} ${fg} ${
-                mine ? 'ring-4 ring-slate-900/20 ring-offset-2 ring-offset-transparent' : ''
-              } ${!reveal && state.phase === 'question' && !answered ? 'active:scale-[0.985] hover:-translate-y-0.5 hover:shadow-lg' : ''}`}
+                mine ? 'ring-4 ring-white/30 ring-offset-2 ring-offset-[#050507]' : ''
+              } ${!reveal && state.phase === 'question' && !answered ? 'active:scale-[0.985] hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110' : ''}`}
               style={{ animationDelay: `${i * 45}ms` } as CSSProperties}
             >
               <span
@@ -259,10 +255,10 @@ function PlayerRoom({
       {err && <ErrorNote>{err}</ErrorNote>}
 
       {state.phase === 'question' && answered && !err && (
-        <div className="flex items-center justify-center gap-2 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm font-semibold text-indigo-800">
+        <div className="flex items-center justify-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm font-semibold text-violet-100">
           <span className="relative flex h-2 w-2" aria-hidden>
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-600" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-400" />
           </span>
           Đã ghi nhận câu trả lời — chờ giáo viên công bố đáp án
         </div>
@@ -273,22 +269,22 @@ function PlayerRoom({
           <div className="text-center">
             {state.mine?.answered ? (
               state.mine.is_correct ? (
-                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 font-bold text-emerald-800 ring-1 ring-emerald-200">
+                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-bold text-emerald-300 ring-1 ring-emerald-500/30">
                   <IconCheck width={20} height={20} /> Chính xác! +{state.mine.points} điểm
                 </p>
               ) : (
-                <p className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 font-bold text-rose-800 ring-1 ring-rose-200">
+                <p className="inline-flex items-center gap-2 rounded-full bg-rose-500/15 px-4 py-2 font-bold text-rose-300 ring-1 ring-rose-500/30">
                   <IconX width={20} height={20} /> Chưa đúng — 0 điểm
                 </p>
               )
             ) : (
-              <p className="inline-flex rounded-full bg-slate-100 px-4 py-2 font-medium text-slate-600">
+              <p className="inline-flex rounded-full bg-zinc-800 px-4 py-2 font-medium text-zinc-400">
                 Bạn chưa trả lời câu này
               </p>
             )}
           </div>
           <div>
-            <h2 className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+            <h2 className="mb-2 text-center text-xs font-semibold tracking-[0.16em] text-zinc-500">
               Bảng xếp hạng tạm thời
             </h2>
             <ol className="space-y-1.5">
@@ -297,8 +293,8 @@ function PlayerRoom({
                   key={p.id}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${
                     p.id === player.id
-                      ? 'bg-indigo-50 font-semibold text-indigo-900 ring-1 ring-indigo-200/70'
-                      : 'bg-slate-50 text-slate-700'
+                      ? 'bg-violet-500/15 font-semibold text-violet-100 ring-1 ring-violet-500/30'
+                      : 'bg-zinc-800/50 text-zinc-300'
                   }`}
                 >
                   <span

@@ -7,18 +7,18 @@ import { Button, Card, EmptyState, ErrorNote, Loading, PageHeader, btnClass } fr
 import { IconDownload } from '../components/icons'
 
 const RANK_TONE = [
-  'bg-amber-400 text-amber-950 ring-1 ring-amber-500/30',
-  'bg-slate-300 text-slate-800 ring-1 ring-slate-400/30',
-  'bg-orange-300 text-orange-900 ring-1 ring-orange-400/30',
+  'bg-amber-400 text-amber-950 ring-1 ring-amber-300/40',
+  'bg-zinc-300 text-zinc-900 ring-1 ring-zinc-200/40',
+  'bg-orange-400 text-orange-950 ring-1 ring-orange-300/40',
 ]
-const RANK_REST = 'bg-slate-100 text-slate-600'
+const RANK_REST = 'bg-zinc-700 text-zinc-200'
 
 function Kpi({ label, value, accent }: { label: string; value: string | number; accent?: string }) {
   return (
     <Card className="relative overflow-hidden p-4 sm:p-5">
-      <div aria-hidden className={`absolute right-0 top-0 h-16 w-16 translate-x-4 -translate-y-4 rounded-full blur-2xl ${accent ?? 'bg-indigo-200/50'}`} />
-      <p className="relative text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</p>
-      <p className="relative mt-1.5 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{value}</p>
+      <div aria-hidden className={`absolute right-0 top-0 h-16 w-16 translate-x-4 -translate-y-4 rounded-full blur-2xl ${accent ?? 'bg-violet-500/20'}`} />
+      <p className="relative text-xs font-semibold tracking-wide text-zinc-400">{label}</p>
+      <p className="relative mt-1.5 text-2xl font-bold tracking-tight text-white sm:text-3xl">{value}</p>
     </Card>
   )
 }
@@ -94,21 +94,21 @@ export default function Results() {
       />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Kpi label="Học sinh" value={state.players.length} accent="bg-sky-200/50" />
-        <Kpi label="Số câu" value={state.total} accent="bg-indigo-200/50" />
-        <Kpi label="Điểm cao nhất" value={topScore} accent="bg-amber-200/50" />
-        <Kpi label="Điểm trung bình" value={avg} accent="bg-emerald-200/50" />
+        <Kpi label="Học sinh" value={state.players.length} accent="bg-sky-500/20" />
+        <Kpi label="Số câu" value={state.total} accent="bg-violet-500/20" />
+        <Kpi label="Điểm cao nhất" value={topScore} accent="bg-amber-500/20" />
+        <Kpi label="Điểm trung bình" value={avg} accent="bg-emerald-500/20" />
       </div>
 
       <Card className="overflow-hidden p-0">
-        <div className="border-b border-slate-100 bg-slate-50/50 px-5 py-4 sm:px-6">
-          <h2 className="text-base font-semibold text-slate-900">Xếp hạng học sinh</h2>
-          <p className="mt-0.5 text-sm text-slate-500">Sắp xếp theo tổng điểm giảm dần</p>
+        <div className="border-b border-zinc-800 bg-zinc-900/40 px-5 py-4 sm:px-6">
+          <h2 className="text-base font-semibold text-white">Xếp hạng học sinh</h2>
+          <p className="mt-0.5 text-sm text-zinc-400">Sắp xếp theo tổng điểm giảm dần</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[560px] text-sm">
-            <thead className="bg-white text-left text-slate-600">
-              <tr className="border-b border-slate-200">
+            <thead className="bg-transparent text-left text-zinc-400">
+              <tr className="border-b border-zinc-800">
                 <th scope="col" className="px-4 py-3 font-semibold sm:px-6">Hạng</th>
                 <th scope="col" className="px-4 py-3 font-semibold sm:px-6">Tên học sinh</th>
                 <th scope="col" className="px-4 py-3 text-right font-semibold sm:px-6">Điểm</th>
@@ -117,12 +117,12 @@ export default function Results() {
                 <th scope="col" className="px-4 py-3 text-right font-semibold sm:px-6">Bỏ qua</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-zinc-800/80">
               {state.players.map((p, i) => {
                 const correct = p.correct ?? 0
                 const answered = p.answered ?? 0
                 return (
-                  <tr key={p.id} className={`transition-colors hover:bg-slate-50/70 ${i < 3 ? 'bg-amber-50/30' : ''}`}>
+                  <tr key={p.id} className={`transition-colors hover:bg-white/[0.03] ${i < 3 ? 'bg-violet-500/[0.04]' : ''}`}>
                     <td className="px-4 py-3 sm:px-6">
                       <span
                         className={`inline-grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${
@@ -132,11 +132,11 @@ export default function Results() {
                         {i + 1}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-medium text-slate-900 sm:px-6">{p.name}</td>
-                    <td className="px-4 py-3 text-right font-bold tabular-nums text-indigo-700 sm:px-6">{p.score}</td>
-                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-emerald-700 sm:px-6">{correct}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-rose-700 sm:px-6">{answered - correct}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-slate-500 sm:px-6">{state.total - answered}</td>
+                    <td className="px-4 py-3 font-medium text-zinc-100 sm:px-6">{p.name}</td>
+                    <td className="px-4 py-3 text-right font-bold tabular-nums text-violet-300 sm:px-6">{p.score}</td>
+                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-emerald-400 sm:px-6">{correct}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-rose-400 sm:px-6">{answered - correct}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-zinc-500 sm:px-6">{state.total - answered}</td>
                   </tr>
                 )
               })}
@@ -153,19 +153,19 @@ export default function Results() {
       {hasAnswers && (
         <Card className="space-y-5 p-5 sm:p-6">
           <div>
-            <h2 className="text-base font-semibold text-slate-900">Tỉ lệ trả lời đúng theo câu</h2>
-            <p className="mt-0.5 text-sm text-slate-500">So với tổng số học sinh trong phòng</p>
+            <h2 className="text-base font-semibold text-white">Tỉ lệ trả lời đúng theo câu</h2>
+            <p className="mt-0.5 text-sm text-zinc-400">So với tổng số học sinh trong phòng</p>
           </div>
           <ul className="space-y-3 text-sm">
             {state.per_question.map((x) => {
               const pct = state.players.length ? (x.correct / state.players.length) * 100 : 0
               return (
                 <li key={x.idx} className="flex items-center gap-3">
-                  <span className="w-16 shrink-0 font-semibold text-slate-700">Câu {x.idx}</span>
-                  <div aria-hidden className="h-3 flex-1 overflow-hidden rounded-full bg-slate-100 ring-1 ring-inset ring-slate-200/70">
-                    <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 transition-all" style={{ width: `${pct}%` }} />
+                  <span className="w-16 shrink-0 font-semibold text-zinc-300">Câu {x.idx}</span>
+                  <div aria-hidden className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800 ring-1 ring-inset ring-zinc-700/70">
+                    <div className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all" style={{ width: `${pct}%` }} />
                   </div>
-                  <span className="w-28 shrink-0 text-right font-medium tabular-nums text-slate-600">
+                  <span className="w-28 shrink-0 text-right font-medium tabular-nums text-zinc-400">
                     {x.correct}/{state.players.length} đúng
                   </span>
                 </li>
@@ -174,11 +174,11 @@ export default function Results() {
           </ul>
 
           {stats.length > 0 && state.question && (
-            <div className="border-t border-slate-200 pt-5">
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+            <div className="border-t border-zinc-800 pt-5">
+              <h3 className="mb-3 text-sm font-semibold tracking-wide text-zinc-400">
                 Phân bố lựa chọn — câu {state.question.idx}
                 {state.phase === 'reveal' && (
-                  <span className="ml-2 normal-case font-semibold text-emerald-700">
+                  <span className="ml-2 font-semibold text-emerald-400">
                     (đúng: {CHOICE_LABELS[state.question.correct ?? 0]})
                   </span>
                 )}
@@ -191,13 +191,13 @@ export default function Results() {
                   const { bg } = choiceStyle(i, 'normal')
                   return (
                     <li key={i} className="flex items-center gap-3 text-sm">
-                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-slate-100 font-bold text-slate-700">
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-zinc-800 font-bold text-zinc-200">
                         {CHOICE_LABELS[i]}
                       </span>
-                      <div aria-hidden className="h-3 flex-1 overflow-hidden rounded-full bg-slate-100 ring-1 ring-inset ring-slate-200/70">
+                      <div aria-hidden className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800 ring-1 ring-inset ring-zinc-700/70">
                         <div className={`h-full rounded-full ${bg}`} style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="w-36 shrink-0 text-right font-medium tabular-nums text-slate-600">
+                      <span className="w-36 shrink-0 text-right font-medium tabular-nums text-zinc-400">
                         {n} người{state.phase === 'reveal' ? ` · ${ok} đúng` : ''}
                       </span>
                     </li>
