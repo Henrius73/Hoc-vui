@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router'
 import { rpc } from '../../lib/supabase'
 import { getPlayer } from '../../lib/store'
@@ -32,6 +32,32 @@ function PlayerRoom({
   const [sent, setSent] = useState<{ qIndex: number; choice: number } | null>(null)
   const [submitErr, setSubmitErr] = useState<string | null>(null)
   const remaining = useRemainingMs(state?.server_now, state?.question ?? null)
+
+  useEffect(() => {
+    if (
+      state?.phase !== 'question' ||
+      !state.auto_reveal ||
+      !state.question?.started_at ||
+      !state.server_now
+    ) {
+      return
+    }
+    const offset = Date.parse(state.server_now) - Date.now()
+    const end = Date.parse(state.question.started_at) + state.question.seconds * 1000
+    const delay = Math.max(0, end - (Date.now() + offset)) + 350
+    const t = window.setTimeout(() => {
+      refresh()
+    }, delay)
+    return () => window.clearTimeout(t)
+  }, [
+    state?.phase,
+    state?.auto_reveal,
+    state?.question?.idx,
+    state?.question?.started_at,
+    state?.question?.seconds,
+    state?.server_now,
+    refresh,
+  ])
 
   async function submit(choice: number) {
     if (!state || state.phase !== 'question' || answered) return
@@ -100,6 +126,7 @@ function PlayerRoom({
       mine={state.mine}
       pendingChoice={pendingChoice}
       answered={answered}
+      autoReveal={Boolean(state.auto_reveal)}
       remainingMs={remaining}
       syncError={error}
       submitError={submitErr}

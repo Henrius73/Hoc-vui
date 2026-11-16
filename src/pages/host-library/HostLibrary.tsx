@@ -24,6 +24,7 @@ export default function HostLibrary() {
   const [preview, setPreview] = useState<QuizPreview | null>(null)
   const [err, setErr] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [autoReveal, setAutoReveal] = useState(true)
   const [openingId, setOpeningId] = useState<string | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<QuizItem | null>(null)
 
@@ -106,6 +107,7 @@ export default function HostLibrary() {
         p_owner: ownerToken(),
         p_host: hostToken(),
         p_quiz: quizId,
+        p_auto_reveal: autoReveal,
       })
       nav(`/host/room/${code}`)
     } catch (e) {
@@ -149,6 +151,8 @@ export default function HostLibrary() {
           quizzes={quizzes}
           busy={busy}
           openingId={openingId}
+          autoReveal={autoReveal}
+          onAutoRevealChange={setAutoReveal}
           onCreateSample={createSample}
           onOpenRoom={openRoom}
           onDeleteRequest={setDeleteTarget}

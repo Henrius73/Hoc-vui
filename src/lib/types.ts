@@ -32,6 +32,7 @@ export type RoomState = {
   room_id: string
   code: string
   phase: Phase
+  auto_reveal?: boolean
   q_index: number
   total: number
   server_now: string

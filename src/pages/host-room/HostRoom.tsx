@@ -44,7 +44,33 @@ export default function HostRoom() {
     return () => window.removeEventListener('beforeunload', onBeforeUnload)
   }, [isGameActive])
 
-  async function act(action: 'start' | 'reveal' | 'next' | 'finish', qi?: number) {
+  useEffect(() => {
+    if (
+      state?.phase !== 'question' ||
+      !state.auto_reveal ||
+      !state.question?.started_at ||
+      !state.server_now
+    ) {
+      return
+    }
+    const offset = Date.parse(state.server_now) - Date.now()
+    const end = Date.parse(state.question.started_at) + state.question.seconds * 1000
+    const delay = Math.max(0, end - (Date.now() + offset)) + 250
+    const t = window.setTimeout(() => {
+      refresh()
+    }, delay)
+    return () => window.clearTimeout(t)
+  }, [
+    state?.phase,
+    state?.auto_reveal,
+    state?.question?.idx,
+    state?.question?.started_at,
+    state?.question?.seconds,
+    state?.server_now,
+    refresh,
+  ])
+
+  async function act(action: 'start' | 'reveal' | 'next' | 'finish' | 'toggle_auto_reveal', qi?: number) {
     if (busy) return
     setBusy(true)
     setErr(null)
@@ -100,9 +126,20 @@ export default function HostRoom() {
             {copied ? 'Đã sao chép' : 'Sao chép liên kết'}
           </Button>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3.5 py-1.5 text-sm font-semibold text-zinc-100">
-          <IconUsers width={16} height={16} /> {state.players.length} học sinh
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            variant={state.auto_reveal ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => act('toggle_auto_reveal')}
+            disabled={busy}
+            title="Tự động hiện đáp án đúng ngay khi hết giờ"
+          >
+            Tự động công bố: {state.auto_reveal ? 'Bật' : 'Tắt'}
+          </Button>
+          <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3.5 py-1.5 text-sm font-semibold text-zinc-100">
+            <IconUsers width={16} height={16} /> {state.players.length} học sinh
+          </span>
+        </div>
       </div>
 
       {error && <ConnectionBanner message={error} />}

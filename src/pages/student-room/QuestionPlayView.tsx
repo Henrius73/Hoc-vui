@@ -16,6 +16,7 @@ export function QuestionPlayView({
   mine,
   pendingChoice,
   answered,
+  autoReveal,
   remainingMs,
   syncError,
   submitError,
@@ -31,6 +32,7 @@ export function QuestionPlayView({
   mine: Mine | null
   pendingChoice: number | null
   answered: boolean
+  autoReveal: boolean
   remainingMs: number
   syncError: string | null
   submitError: string | null
@@ -79,7 +81,11 @@ export function QuestionPlayView({
               {timedOut ? 'Đã hết giờ' : `Còn ${secs}s`}
             </span>
             <span className="text-xs font-medium text-zinc-500 sm:text-sm">
-              {timedOut ? 'Chờ giáo viên công bố đáp án' : 'Hết giờ sẽ khóa trả lời'}
+              {timedOut
+                ? autoReveal
+                  ? 'Đang mở đáp án...'
+                  : 'Chờ giáo viên công bố đáp án'
+                : 'Hết giờ sẽ khóa trả lời'}
             </span>
           </div>
           <div className="mt-2">
@@ -118,7 +124,9 @@ export function QuestionPlayView({
 
       {phase === 'question' && !answered && timedOut && !submitError && (
         <div className="rounded-xl border border-zinc-700 bg-zinc-800/60 px-4 py-3 text-center text-sm font-medium text-zinc-300">
-          Đã hết thời gian trả lời — chờ giáo viên công bố đáp án
+          {autoReveal
+            ? 'Đã hết thời gian — đang tự động hiển thị đáp án...'
+            : 'Đã hết thời gian trả lời — chờ giáo viên công bố đáp án'}
         </div>
       )}
 

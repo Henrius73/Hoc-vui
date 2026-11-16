@@ -12,6 +12,8 @@ export function QuizListCard({
   quizzes,
   busy,
   openingId,
+  autoReveal,
+  onAutoRevealChange,
   onCreateSample,
   onOpenRoom,
   onDeleteRequest,
@@ -20,6 +22,8 @@ export function QuizListCard({
   quizzes: QuizItem[]
   busy: boolean
   openingId: string | null
+  autoReveal: boolean
+  onAutoRevealChange: (v: boolean) => void
   onCreateSample: () => void
   onOpenRoom: (id: string) => void
   onDeleteRequest: (item: QuizItem) => void
@@ -31,6 +35,17 @@ export function QuizListCard({
         <Button variant="outline" size="sm" onClick={onCreateSample} disabled={busy}>
           + Tạo bộ mẫu
         </Button>
+      </div>
+      <div className="border-b border-zinc-800/80 bg-zinc-900/20 px-5 py-3 sm:px-6">
+        <label className="flex cursor-pointer items-center gap-2.5 text-sm text-zinc-300 select-none">
+          <input
+            type="checkbox"
+            checked={autoReveal}
+            onChange={(e) => onAutoRevealChange(e.target.checked)}
+            className="h-4 w-4 rounded border-zinc-600 bg-zinc-800 text-violet-600 focus:ring-violet-500"
+          />
+          <span>Tự động công bố đáp án khi hết giờ (không cần bấm tay)</span>
+        </label>
       </div>
       <div className="px-5 py-4 sm:px-6">
         {!loaded ? (
