@@ -1,56 +1,85 @@
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  background: #f1f5f9;
-  color: #0f172a;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  -webkit-tap-highlight-color: transparent;
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --ring: #4f46e5;
 }
 
-/* Focus thấy rõ trên mọi phần tử tương tác (WCAG 2.4.7) */
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(79, 70, 229, 0.08), transparent 60%),
+    radial-gradient(900px 400px at 100% 0%, rgba(16, 185, 129, 0.06), transparent 55%),
+    var(--bg);
+}
+
+::selection {
+  background: rgba(79, 70, 229, 0.18);
+}
+
+/* Focus rõ (WCAG 2.4.7) */
 *:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
 @keyframes timer-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 
 .fade-up {
-  animation: fade-up 0.22s ease-out both;
+  animation: fade-up 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .pop-in {
-  animation: pop-in 0.2s ease-out both;
+  animation: pop-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .timer-pulse {
-  animation: timer-pulse 0.6s ease-in-out infinite;
+  animation: timer-pulse 0.7s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -61,13 +90,23 @@ body {
   }
 }
 
-/* Lớp tiện ích: nâng nhẹ khi hover/focus trên thiết bị có hover */
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
   .hover-lift {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgb(15 23 42 / 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   }
+}
+
+/* Thanh tiến trình mượt khi cập nhật */
+.progress-fill {
+  transition: width 0.25s linear;
+}
+
+/* Thanh cuộn gọn */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
 }

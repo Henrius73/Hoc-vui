@@ -40,62 +40,56 @@ export default function Join() {
   }
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-10">
-      <Card className="fade-up p-6">
-        <div className="mb-5 flex flex-col items-center text-center">
-          <span className="grid h-12 w-12 place-items-center rounded-xl bg-emerald-100 text-emerald-700">
+    <div className="mx-auto flex min-h-[calc(100vh-10rem)] max-w-md items-center px-4 py-10 sm:px-6">
+      <Card className="fade-up w-full overflow-hidden p-0">
+        <div className="border-b border-slate-100 bg-gradient-to-br from-emerald-50 via-white to-white px-6 py-6 text-center sm:px-8">
+          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-4 ring-emerald-100">
             <IconPlay width={26} height={26} />
           </span>
-          <h1 className="mt-3 text-xl font-bold tracking-tight">Vào phòng</h1>
-          <p className="mt-1 text-sm text-slate-600">Nhập mã phòng giáo viên chiếu lên lớp</p>
+          <h1 className="mt-4 text-2xl font-bold tracking-tight text-slate-900">Tham gia phòng học</h1>
+          <p className="mt-1.5 text-sm text-slate-600">Nhập mã 6 số mà giáo viên đang hiển thị trên màn hình</p>
         </div>
 
-        {existing && (
-          <p className="mb-4 rounded-lg bg-indigo-50 px-3 py-2.5 text-sm text-indigo-700">
-            Bạn đã tham gia phòng này với tên <b>{existing.name}</b>.
-          </p>
-        )}
+        <div className="space-y-5 px-6 py-6 sm:px-8 sm:py-7">
+          {existing && (
+            <p className="rounded-xl border border-indigo-100 bg-indigo-50 px-3.5 py-3 text-sm text-indigo-800">
+              Bạn đã từng vào phòng này với tên <b>{existing.name}</b>. Bạn có thể vào lại.
+            </p>
+          )}
 
-        <div className="space-y-4">
-          <label className="block text-sm font-medium">
-            Mã phòng (6 chữ số)
-            <input
-              value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              inputMode="numeric"
-              autoComplete="off"
-              placeholder="123456"
-              aria-label="Mã phòng 6 chữ số"
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 text-center font-mono text-2xl tracking-[0.35em] placeholder:text-slate-300 focus:border-indigo-500"
-            />
-          </label>
-          <label className="block text-sm font-medium">
-            Tên của bạn
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value.slice(0, 20))}
-              placeholder="VD: An"
-              maxLength={20}
-              className="mt-1.5 w-full rounded-lg border border-slate-300 px-3 py-2.5 placeholder:text-slate-400 focus:border-indigo-500"
-            />
-          </label>
-        </div>
-
-        {err && (
-          <div className="mt-4">
-            <ErrorNote>{err}</ErrorNote>
+          <div className="space-y-4">
+            <label className="block">
+              <span className="text-sm font-medium text-slate-700">Mã phòng</span>
+              <input
+                value={code}
+                onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                inputMode="numeric"
+                autoComplete="off"
+                placeholder="000000"
+                aria-label="Mã phòng 6 chữ số"
+                className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50/50 px-3 py-3 text-center font-mono text-3xl font-semibold tracking-[0.35em] text-slate-900 placeholder:text-slate-300 transition-colors focus:border-indigo-500 focus:bg-white"
+              />
+              <span className="mt-1.5 block text-xs text-slate-500">Gồm đúng 6 chữ số</span>
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium text-slate-700">Tên hiển thị</span>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value.slice(0, 20))}
+                placeholder="Ví dụ: Minh An"
+                maxLength={20}
+                className="mt-1.5 w-full rounded-xl border border-slate-300 bg-slate-50/50 px-3.5 py-3 text-slate-900 placeholder:text-slate-400 transition-colors focus:border-indigo-500 focus:bg-white"
+              />
+              <span className="mt-1.5 block text-xs text-slate-500">Tối đa 20 ký tự, hiển thị với cả lớp</span>
+            </label>
           </div>
-        )}
 
-        <Button
-          variant="success"
-          size="lg"
-          onClick={join}
-          disabled={busy}
-          className="mt-5 w-full"
-        >
-          {busy ? 'Đang vào...' : existing ? 'Vào lại phòng' : 'Tham gia'}
-        </Button>
+          {err && <ErrorNote>{err}</ErrorNote>}
+
+          <Button variant="success" size="lg" onClick={join} disabled={busy} className="w-full">
+            {busy ? 'Đang vào phòng...' : existing ? 'Vào lại phòng' : 'Tham gia ngay'}
+          </Button>
+        </div>
       </Card>
     </div>
   )

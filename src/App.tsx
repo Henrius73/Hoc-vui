@@ -10,12 +10,12 @@ import Results from './pages/Results'
 
 function ConfigBanner() {
   return (
-    <div role="alert" className="border-b border-amber-300 bg-amber-100 text-amber-950">
-      <div className="mx-auto flex max-w-5xl flex-wrap gap-x-2 gap-y-0.5 px-4 py-2.5 text-sm">
-        <strong>Chưa cấu hình Supabase.</strong>
-        <span>
-          Chạy file <code className="font-semibold">supabase/migrations/0001_init.sql</code> trong
-          SQL Editor, điền <code className="font-semibold">.env</code> (xem README) rồi tải lại trang.
+    <div role="alert" className="border-b border-amber-200 bg-amber-50 text-amber-950">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-2 gap-y-0.5 px-4 py-2.5 text-sm sm:px-6">
+        <strong className="font-semibold">Chưa cấu hình Supabase.</strong>
+        <span className="text-amber-900/90">
+          Chạy <code className="rounded bg-amber-100 px-1.5 py-0.5 font-semibold">supabase/migrations/0001_init.sql</code>, điền{' '}
+          <code className="rounded bg-amber-100 px-1.5 py-0.5 font-semibold">.env</code> rồi tải lại.
         </span>
       </div>
     </div>
@@ -24,20 +24,22 @@ function ConfigBanner() {
 
 function Shell({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation()
+  const isHome = pathname === '/'
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="bg-slate-900 text-white">
-        <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
-          <Link to="/" className="text-lg font-bold tracking-tight hover:text-white">
-            Học Vui
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/85 text-white backdrop-blur supports-[backdrop-filter]:bg-slate-950/70">
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
+          <Link to="/" className="group inline-flex items-center rounded-lg focus-visible:outline-offset-4">
+            <span className="text-xl font-extrabold tracking-tight sm:text-2xl">
+              <span className="bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
+                Học Vui
+              </span>
+            </span>
           </Link>
-          <span className="hidden border-l border-slate-700 pl-3 text-xs text-slate-400 sm:inline">
-            Trò chơi trắc nghiệm cả lớp
-          </span>
-          {pathname !== '/' && (
+          {!isHome && (
             <Link
               to="/"
-              className="ml-auto inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white"
+              className="ml-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
             >
               <IconArrowLeft width={16} height={16} /> Trang chủ
             </Link>

@@ -1,10 +1,8 @@
-# Học Vui — Trò chơi trắc nghiệm cả lớp (kiểu Kahoot)
+# Học Vui — Trò chơi trắc nghiệm cả lớp
 
-Web trắc nghiệm realtime: giáo viên nhập bộ câu hỏi từ Excel, tạo phòng bằng mã 6 số;
-học sinh vào bằng mã + tên, trả lời theo timer, điểm tính theo trả lời đúng (1000 điểm/câu),
-có tổng hợp điểm + thống kê từng học sinh và xuất file CSV.
+Giáo viên nhập bộ câu hỏi từ Excel, tạo phòng bằng mã 6 số; học sinh vào bằng mã + tên, trả lời theo timer, điểm tính theo trả lời đúng (1000 điểm/câu), có tổng hợp điểm + thống kê từng học sinh và xuất file Excel.
 
-**Vite + React 19 + TypeScript + Tailwind v4 + Supabase (Postgres + Realtime) · không cần tài khoản đăng nhập.**
+**Vite + React 19 + TypeScript + Tailwind v4 + Supabase (Postgres) · không cần tài khoản đăng nhập.**
 
 ## Chạy local
 
@@ -37,7 +35,7 @@ npm run dev        # http://localhost:5173
 2. **Mở phòng** → chiếu mã 6 số + liên kết lên lớp.
 3. Học sinh mở trang → **Tôi là học sinh** → nhập mã + tên → **Tham gia**.
 4. Giáo viên: **Bắt đầu** → mỗi câu bấm **Công bố đáp án** → **Câu tiếp theo** → **Kết thúc & tổng kết**.
-5. Bảng tổng hợp: xem/tải file CSV tổng hợp điểm và thống kê đúng theo từng câu.
+5. Bảng tổng hợp: xem/tải file Excel tổng hợp điểm và thống kê đúng theo từng câu.
    Phòng đã mở và kết quả lưu lại trong mục **Phòng đã mở**.
 
 ## Kiểm tra nhanh (khuyến nghị trước buổi học)
@@ -69,7 +67,7 @@ delete from public.quiz_sets where owner_token = 'smoketest_owner_token_0001';
 ```
 src/
   lib/      supabase.ts (client + rpc), store.ts (token máy, phiên học sinh),
-            excel.ts (đọc Excel + tệp mẫu), csv.ts (xuất CSV), types.ts
+            excel.ts (đọc/xuất Excel + tệp mẫu), types.ts
   hooks/    useRoomState.ts (snapshot + realtime + poll), useRemainingMs.ts (đồng hồ server)
   pages/    Home, Join, StudentRoom, HostLibrary, HostRoom, Results
 supabase/

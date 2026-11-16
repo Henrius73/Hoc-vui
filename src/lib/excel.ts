@@ -104,3 +104,24 @@ export async function downloadTemplate(): Promise<void> {
   XLSX.utils.book_append_sheet(wb, ws, 'Câu hỏi')
   XLSX.writeFile(wb, 'mau-cau-hoi.xlsx')
 }
+
+/** Xuất tổng hợp kết quả phòng ra Excel (.xlsx). */
+export async function downloadResultsExcel(
+  filename: string,
+  summary: (string | number)[][],
+  perQuestion: (string | number)[][],
+): Promise<void> {
+  const XLSX = await import('xlsx')
+  const wb = XLSX.utils.book_new()
+
+  const wsSummary = XLSX.utils.aoa_to_sheet(summary)
+  wsSummary['!cols'] = [{ wch: 28 }, { wch: 12 }, { wch: 16 }, { wch: 12 }, { wch: 12 }, { wch: 10 }]
+  XLSX.utils.book_append_sheet(wb, wsSummary, 'Tổng kết')
+
+  const wsQ = XLSX.utils.aoa_to_sheet(perQuestion)
+  wsQ['!cols'] = [{ wch: 10 }, { wch: 18 }, { wch: 18 }]
+  XLSX.utils.book_append_sheet(wb, wsQ, 'Theo câu')
+
+  const name = filename.endsWith('.xlsx') ? filename : `${filename}.xlsx`
+  XLSX.writeFile(wb, name)
+}
