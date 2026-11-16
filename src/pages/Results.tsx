@@ -3,15 +3,10 @@ import { hostToken } from '../lib/store'
 import { downloadResultsExcel } from '../lib/excel'
 import { CHOICE_LABELS, choiceStyle, type HostState } from '../lib/types'
 import { useRoomState } from '../hooks/useRoomState'
-import { Button, Card, EmptyState, ErrorNote, Loading, PageHeader, btnClass } from '../components/ui'
+import { Button, Card, ConnectionBanner, EmptyState, Loading, PageHeader, btnClass } from '../components/ui'
+import { RANK_REST, RANK_TONE } from '../components/Leaderboard'
+import { RoomErrorView } from '../components/RoomErrorView'
 import { IconDownload } from '../components/icons'
-
-const RANK_TONE = [
-  'bg-amber-400 text-amber-950 ring-1 ring-amber-300/40',
-  'bg-zinc-300 text-zinc-900 ring-1 ring-zinc-200/40',
-  'bg-orange-400 text-orange-950 ring-1 ring-orange-300/40',
-]
-const RANK_REST = 'bg-zinc-700 text-zinc-200'
 
 function Kpi({ label, value, accent }: { label: string; value: string | number; accent?: string }) {
   return (
@@ -31,19 +26,7 @@ export default function Results() {
   })
 
   if (error && !state) {
-    return (
-      <div className="mx-auto max-w-md space-y-3 px-4 py-16 text-center">
-        <ErrorNote>{error}</ErrorNote>
-        <Button variant="outline" onClick={refresh}>
-          Thử lại
-        </Button>
-        <div>
-          <Link to="/host" className={btnClass('outline')}>
-            Quay lại thư viện
-          </Link>
-        </div>
-      </div>
-    )
+    return <RoomErrorView error={error} onRetry={refresh} backTo="/host" backLabel="Quay lại thư viện" />
   }
   if (!state) return <Loading label="Đang tải kết quả..." />
 
@@ -92,6 +75,8 @@ export default function Results() {
           </>
         }
       />
+
+      {error && <ConnectionBanner message={error} />}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Kpi label="Học sinh" value={state.players.length} accent="bg-sky-500/20" />

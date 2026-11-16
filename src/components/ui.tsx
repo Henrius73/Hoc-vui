@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
+import { useEffect, type ButtonHTMLAttributes, type HTMLAttributes, type ReactNode } from 'react'
 
 const BTN = {
   primary:
@@ -126,6 +126,86 @@ export function PageHeader({
         {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-400">{desc}</p>}
       </div>
       {action && <div className="flex shrink-0 flex-wrap items-center gap-2">{action}</div>}
+    </div>
+  )
+}
+
+export function ConnectionBanner({ message }: { message: string }) {
+  return (
+    <div
+      role="status"
+      className="flex items-center justify-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3.5 py-2 text-xs font-medium text-amber-200 sm:text-sm"
+    >
+      <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" aria-hidden />
+      <span>Mất kết nối tạm thời ({message}) — đang tự động thử lại...</span>
+    </div>
+  )
+}
+
+export function ConfirmDialog({
+  open,
+  title,
+  message,
+  confirmLabel = 'Xác nhận',
+  cancelLabel = 'Hủy',
+  danger = false,
+  busy = false,
+  onConfirm,
+  onCancel,
+}: {
+  open: boolean
+  title: string
+  message: string
+  confirmLabel?: string
+  cancelLabel?: string
+  danger?: boolean
+  busy?: boolean
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !busy) onCancel()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, busy, onCancel])
+
+  if (!open) return null
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirm-dialog-title"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm"
+      onClick={() => {
+        if (!busy) onCancel()
+      }}
+    >
+      <div
+        className="pop-in w-full max-w-sm rounded-2xl border border-zinc-800 bg-[#121216] p-6 shadow-2xl shadow-black/60"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 id="confirm-dialog-title" className="text-lg font-bold text-white">
+          {title}
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">{message}</p>
+        <div className="mt-6 flex justify-end gap-2.5">
+          <Button variant="outline" size="sm" onClick={onCancel} disabled={busy}>
+            {cancelLabel}
+          </Button>
+          <Button
+            variant={danger ? 'danger' : 'primary'}
+            size="sm"
+            onClick={onConfirm}
+            disabled={busy}
+          >
+            {busy ? 'Đang xử lý...' : confirmLabel}
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }
