@@ -38,6 +38,23 @@ npm run dev        # http://localhost:5173
 5. Bảng tổng hợp: xem/tải file Excel tổng hợp điểm và thống kê đúng theo từng câu.
    Phòng đã mở và kết quả lưu lại trong mục **Phòng đã mở**.
 
+## Giao diện sáng/tối & lối tắt cho giáo viên
+
+- **Sáng/tối**: nút ☀/🌙 trên header đổi giao diện toàn app ngay lập tức. Lựa chọn lưu ở
+  `localStorage['hv_theme']`; lần đầu mở, app theo cài đặt hệ thống (`prefers-color-scheme`).
+  Một script nhỏ trong `index.html` áp `data-theme` trước khi React tải nên không bị nháy màu khi reload.
+- **Nút Giáo viên**: trên header, dẫn tới `/host` (ẩn khi đang ở trong `/host*`). Đã đăng nhập thì
+  nhãn đổi thành **Quản lý đề**; chưa đăng nhập sẽ được chuyển tới `/host/login`.
+
+### Kiểm tra giao diện (thủ công)
+
+1. Bật/tắt theme ở `/`, `/join`, `/host/login`, `/host`, phòng host và phòng học sinh — chữ, nền,
+   viền đọc rõ ở cả hai theme; icon ☀/🌙 và `aria-label` đổi đúng.
+2. Reload ở bất kỳ trang nào — theme giữ nguyên lựa chọn. Mở tab ẩn danh lần đầu thì theo hệ thống.
+3. Mã QR ở phòng chờ host vẫn nền trắng, mã tối ở cả hai theme (bắt buộc để quét được).
+4. Nút **Giáo viên** hiện ở `/`, `/join` và phòng học sinh; ẩn trong `/host*`. Chưa đăng nhập bấm
+   vào → `/host/login`; sau khi đăng nhập nhãn đổi thành **Quản lý đề**.
+
 ## Kiểm tra nhanh (khuyến nghị trước buổi học)
 
 ```bash
