@@ -27,6 +27,7 @@ export default function HostLibrary() {
   const [autoReveal, setAutoReveal] = useState(true)
   const [openingId, setOpeningId] = useState<string | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<QuizItem | null>(null)
+  const [deleteRoomTarget, setDeleteRoomTarget] = useState<RoomItem | null>(null)
 
   const load = useCallback(async () => {
     try {
@@ -131,6 +132,28 @@ export default function HostLibrary() {
     }
   }
 
+  async function confirmRemoveRoom() {
+    if (!deleteRoomTarget) return
+    setBusy(true)
+    setErr(null)
+    try {
+      await rpc<void>('delete_room', { p_host: hostToken(), p_code: deleteRoomTarget.code })
+      setDeleteRoomTarget(null)
+      await load()
+    } catch (e) {
+      setErr((e as Error).message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const roomPhaseText: Record<RoomItem['phase'], string> = {
+    lobby: 'đang chờ học sinh',
+    question: 'đang diễn ra',
+    reveal: 'đang công bố đáp án',
+    finished: 'đã kết thúc',
+  }
+
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
       <PageHeader eyebrow="Dành cho giáo viên" title="Thư viện & phòng chơi" />
@@ -158,7 +181,12 @@ export default function HostLibrary() {
           onDeleteRequest={setDeleteTarget}
         />
 
-        <RoomHistoryCard loaded={loaded} rooms={rooms} />
+        <RoomHistoryCard
+          loaded={loaded}
+          rooms={rooms}
+          busy={busy}
+          onDeleteRequest={setDeleteRoomTarget}
+        />
       </div>
 
       <ConfirmDialog
@@ -170,6 +198,21 @@ export default function HostLibrary() {
         busy={busy}
         onConfirm={confirmRemoveQuiz}
         onCancel={() => setDeleteTarget(null)}
+      />
+
+      <ConfirmDialog
+        open={Boolean(deleteRoomTarget)}
+        title="Xóa lịch sử phòng?"
+        message={
+          deleteRoomTarget
+            ? `Phòng ${deleteRoomTarget.code} (${roomPhaseText[deleteRoomTarget.phase]}) sẽ bị xóa cùng toàn bộ câu trả lời và kết quả. Hành động này không thể hoàn tác.`
+            : ''
+        }
+        confirmLabel="Xóa phòng"
+        danger
+        busy={busy}
+        onConfirm={confirmRemoveRoom}
+        onCancel={() => setDeleteRoomTarget(null)}
       />
     </div>
   )

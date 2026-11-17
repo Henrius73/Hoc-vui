@@ -94,6 +94,9 @@ body {
   .timer-pulse {
     animation: none;
   }
+  .progress-fill {
+    transition: none;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {

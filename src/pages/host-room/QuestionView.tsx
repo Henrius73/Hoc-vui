@@ -2,6 +2,7 @@ import type { Question } from '../../lib/types'
 import { Button, Card } from '../../components/ui'
 import { ChoiceGrid } from '../../components/ChoiceGrid'
 import { TimerBar } from '../../components/TimerBar'
+import { QuestionProgress } from '../../components/QuestionProgress'
 import { IconUsers } from '../../components/icons'
 
 export function QuestionView({
@@ -31,10 +32,8 @@ export function QuestionView({
   return (
     <Card className="fade-up space-y-5 p-5 sm:p-7 lg:p-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
-            Câu {question.idx}/{total}
-          </span>
+        <div className="flex flex-1 flex-wrap items-center gap-3">
+          <QuestionProgress current={question.idx} total={total} className="w-full max-w-[16rem]" />
           <span className="text-sm font-medium text-zinc-400">Đang thu câu trả lời</span>
         </div>
         <div className={`flex items-center gap-2 rounded-xl px-3 py-1.5 ${urgent ? 'bg-rose-500/15' : 'bg-zinc-800/80'}`}>

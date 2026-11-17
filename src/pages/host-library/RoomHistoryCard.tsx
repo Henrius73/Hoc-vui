@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import type { Phase } from '../../lib/types'
-import { Card, EmptyState, Loading, StepTitle, btnClass } from '../../components/ui'
+import { Button, Card, EmptyState, Loading, StepTitle, btnClass } from '../../components/ui'
+import { IconTrash } from '../../components/icons'
 
 export type RoomItem = {
   code: string
@@ -20,9 +21,13 @@ const PHASE_LABEL: Record<Phase, { text: string; cls: string }> = {
 export function RoomHistoryCard({
   loaded,
   rooms,
+  busy = false,
+  onDeleteRequest,
 }: {
   loaded: boolean
   rooms: RoomItem[]
+  busy?: boolean
+  onDeleteRequest: (room: RoomItem) => void
 }) {
   return (
     <Card className="overflow-hidden p-0">
@@ -62,6 +67,15 @@ export function RoomHistoryCard({
                     <Link to={`/host/results/${r.code}`} className={btnClass('outline', 'sm')}>
                       Kết quả
                     </Link>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => onDeleteRequest(r)}
+                      disabled={busy}
+                      aria-label={`Xóa lịch sử phòng ${r.code}`}
+                    >
+                      <IconTrash width={14} height={14} /> Xóa
+                    </Button>
                   </div>
                 </div>
               </li>

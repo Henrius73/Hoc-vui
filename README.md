@@ -14,7 +14,7 @@ npm run dev        # http://localhost:5173
 ## Cấu hình Supabase (bắt buộc, làm 1 lần)
 
 1. Tạo project tại [supabase.com](https://supabase.com).
-2. **SQL Editor** → chạy toàn bộ file [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql).
+2. **SQL Editor** → chạy lần lượt các file trong [`supabase/migrations/`](supabase/migrations/) theo thứ tự `0001_init.sql` → `0004_delete_room.sql` (hoặc dùng `npx supabase db push`).
 3. Tạo file `.env` ở gốc dự án (copy từ `.env.example`) và điền:
 
    ```
@@ -73,6 +73,9 @@ src/
 supabase/
   migrations/ 0001_init.sql — bảng + RLS + RPC (save_quiz, create_room, join_room,
                get_room_state, host_snapshot, host_action, submit_answer, list_rooms, ...)
+               0002_teacher_auth.sql — gắn dữ liệu với auth.uid()
+               0003_auto_reveal.sql — tự công bố đáp án khi hết giờ
+               0004_delete_room.sql — RPC delete_room (xóa lịch sử phòng)
 ```
 
 Chi tiết spec + kế hoạch + shortcut đã biết: xem [`project.md`](project.md).

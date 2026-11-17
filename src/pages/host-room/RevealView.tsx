@@ -1,6 +1,7 @@
 import { CHOICE_LABELS, type Question } from '../../lib/types'
 import { Button, Card } from '../../components/ui'
 import { ChoiceGrid } from '../../components/ChoiceGrid'
+import { QuestionProgress } from '../../components/QuestionProgress'
 import { IconCheck } from '../../components/icons'
 
 export function RevealView({
@@ -27,9 +28,7 @@ export function RevealView({
           <IconCheck width={15} height={15} />
           Đáp án đúng: {CHOICE_LABELS[question.correct ?? 0]}
         </span>
-        <span className="rounded-full bg-zinc-800 px-3 py-1.5 text-zinc-300">
-          Câu {question.idx}/{total}
-        </span>
+        <QuestionProgress current={question.idx} total={total} className="w-40" />
       </div>
 
       <h1 className="text-center text-2xl font-bold leading-snug text-white sm:text-4xl lg:text-5xl">

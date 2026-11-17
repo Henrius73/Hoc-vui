@@ -3,6 +3,7 @@ import { Card, ConnectionBanner, ErrorNote } from '../../components/ui'
 import { ChoiceGrid } from '../../components/ChoiceGrid'
 import { Leaderboard } from '../../components/Leaderboard'
 import { TimerBar } from '../../components/TimerBar'
+import { QuestionProgress } from '../../components/QuestionProgress'
 import { IconCheck, IconClock, IconX } from '../../components/icons'
 
 export function QuestionPlayView({
@@ -47,25 +48,11 @@ export function QuestionPlayView({
   return (
     <div className="mx-auto max-w-3xl space-y-4 px-4 py-5 sm:px-6 sm:py-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
-            Câu {question.idx}/{total}
-          </span>
-          <span aria-hidden className="hidden items-center gap-1 sm:flex">
-            {Array.from({ length: total }, (_, i) => (
-              <span
-                key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i + 1 === question.idx
-                    ? 'w-7 bg-violet-500'
-                    : i + 1 < question.idx
-                      ? 'w-1.5 bg-violet-400/50'
-                      : 'w-1.5 bg-zinc-700'
-                }`}
-              />
-            ))}
-          </span>
-        </div>
+        <QuestionProgress
+          current={question.idx}
+          total={total}
+          className="w-full max-w-[15rem] sm:w-64"
+        />
         <span className="shrink-0 rounded-full border border-zinc-700 bg-zinc-900/80 px-3.5 py-1.5 text-sm font-semibold text-zinc-200 shadow-sm">
           {playerName} <span className="text-zinc-600">·</span> <span className="text-violet-300">{myScore} đ</span>
         </span>

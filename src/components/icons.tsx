@@ -102,3 +102,13 @@ export function IconArrowLeft(p: IconProps) {
     </svg>
   )
 }
+
+export function IconTrash(p: IconProps) {
+  return (
+    <svg {...base(p)}>
+      <path d="M4 7h16M9.5 7V5.5a1.5 1.5 0 0 1 1.5-1.5h2a1.5 1.5 0 0 1 1.5 1.5V7" />
+      <path d="M6.5 7l.8 11.2a2 2 0 0 0 2 1.8h5.4a2 2 0 0 0 2-1.8L17.5 7" />
+      <path d="M10.5 11v5M13.5 11v5" />
+    </svg>
+  )
+}
