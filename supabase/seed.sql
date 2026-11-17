@@ -2,6 +2,9 @@
 -- Chạy trong Supabase SQL Editor SAU KHI đã chạy 0001_init.sql và 0002_teacher_auth.sql.
 -- Mật khẩu mặc định cho tất cả tài khoản seed: 123456
 
+-- pgcrypto trên Supabase nằm ở schema `extensions` (không có trong search_path mặc định).
+set search_path = public, extensions;
+
 do $$
 declare
   v_teachers text[] := array[
