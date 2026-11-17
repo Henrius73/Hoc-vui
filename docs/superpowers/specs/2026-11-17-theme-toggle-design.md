@@ -44,9 +44,9 @@ Cho phép người dùng chuyển giao diện **sáng/tối** toàn app, và th�
 | `subtle` | `#71717a` | `#71717a` |
 | `scrim` | `rgba(0,0,0,.7)` | `rgba(0,0,0,.55)` |
 | `tone-violet` | `#a78bfa` | `#6d28d9` |
-| `tone-emerald` | `#6ee7b7` | `#047857` |
+| `tone-emerald` | `#6ee7b7` | `#065f46` |
 | `tone-rose` | `#fda4af` | `#be123c` |
-| `tone-amber` | `#fcd34d` | `#b45309` |
+| `tone-amber` | `#fcd34d` | `#92400e` |
 | `tone-sky` | `#7dd3fc` | `#0369a1` |
 
 Thay thế:
