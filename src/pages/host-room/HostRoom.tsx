@@ -115,11 +115,11 @@ export default function HostRoom() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-4 px-4 py-5 sm:px-6 sm:py-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-zinc-800 bg-[#121216]/90 px-4 py-3 shadow-lg shadow-black/20 backdrop-blur-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-surface/90 px-4 py-3 shadow-lg shadow-black/20 backdrop-blur-sm">
         <div className="flex flex-wrap items-center gap-3">
           <div className="leading-tight">
-            <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-500">Mã phòng</p>
-            <p className="font-mono text-2xl font-bold tracking-[0.18em] text-violet-300 sm:text-3xl">{state.code}</p>
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-subtle">Mã phòng</p>
+            <p className="font-mono text-2xl font-bold tracking-[0.18em] text-tone-violet sm:text-3xl">{state.code}</p>
           </div>
           <Button variant="outline" size="sm" onClick={copyLink} aria-label="Sao chép liên kết phòng">
             <IconCopy width={16} height={16} />
@@ -136,7 +136,7 @@ export default function HostRoom() {
           >
             Tự động công bố: {state.auto_reveal ? 'Bật' : 'Tắt'}
           </Button>
-          <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3.5 py-1.5 text-sm font-semibold text-zinc-100">
+          <span className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface-2 px-3.5 py-1.5 text-sm font-semibold text-ink">
             <IconUsers width={16} height={16} /> {state.players.length} học sinh
           </span>
         </div>

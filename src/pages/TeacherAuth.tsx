@@ -73,15 +73,15 @@ export default function TeacherAuth() {
         <div className="mx-auto h-56 w-72 rounded-full bg-violet-600/20 blur-3xl" />
       </div>
 
-      <Card className="fade-up w-full overflow-hidden border-zinc-800 bg-[#0f0f14] p-0 shadow-2xl shadow-black/40">
-        <div className="border-b border-zinc-800 bg-gradient-to-br from-violet-600/15 via-transparent to-orange-500/10 px-6 py-7 text-center sm:px-8">
+      <Card className="fade-up w-full overflow-hidden border-line bg-surface p-0 shadow-2xl shadow-black/40">
+        <div className="border-b border-line bg-gradient-to-br from-violet-600/15 via-transparent to-orange-500/10 px-6 py-7 text-center sm:px-8">
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-white/10">
             <IconBoard width={26} height={26} />
           </span>
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-white">
+          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-ink">
             {mode === 'login' ? 'Giáo viên đăng nhập' : 'Tạo tài khoản giáo viên'}
           </h1>
-          <p className="mt-1.5 text-sm text-zinc-400">
+          <p className="mt-1.5 text-sm text-muted">
             Đồng bộ bộ câu hỏi và lịch sử phòng trên mọi thiết bị
           </p>
         </div>
@@ -92,33 +92,33 @@ export default function TeacherAuth() {
           )}
 
           {notice && (
-            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-3 text-sm font-medium text-emerald-200">
+            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-3 text-sm font-medium text-tone-emerald">
               {notice}
             </p>
           )}
 
           <form onSubmit={onSubmit} className="space-y-4">
             <label className="block">
-              <span className="text-sm font-medium text-zinc-200">Email</span>
+              <span className="text-sm font-medium text-ink-soft">Email</span>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 placeholder="giaovien@truong.edu.vn"
-                className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3.5 py-2.5 text-white placeholder:text-zinc-500 transition-colors focus:border-violet-500 focus:ring-0"
+                className="mt-1.5 w-full rounded-xl border border-line-strong bg-surface-2 px-3.5 py-2.5 text-ink placeholder:text-subtle transition-colors focus:border-violet-500 focus:ring-0"
               />
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-zinc-200">Mật khẩu</span>
+              <span className="text-sm font-medium text-ink-soft">Mật khẩu</span>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 placeholder="Ít nhất 6 ký tự"
-                className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3.5 py-2.5 text-white placeholder:text-zinc-500 transition-colors focus:border-violet-500 focus:ring-0"
+                className="mt-1.5 w-full rounded-xl border border-line-strong bg-surface-2 px-3.5 py-2.5 text-ink placeholder:text-subtle transition-colors focus:border-violet-500 focus:ring-0"
               />
             </label>
 
@@ -134,9 +134,9 @@ export default function TeacherAuth() {
           </form>
 
           <div className="relative flex items-center py-1">
-            <div className="flex-grow border-t border-zinc-800" />
-            <span className="mx-3 shrink text-xs font-medium text-zinc-500">hoặc</span>
-            <div className="flex-grow border-t border-zinc-800" />
+            <div className="flex-grow border-t border-line" />
+            <span className="mx-3 shrink text-xs font-medium text-subtle">hoặc</span>
+            <div className="flex-grow border-t border-line" />
           </div>
 
           <Button
@@ -150,7 +150,7 @@ export default function TeacherAuth() {
             Tiếp tục với Google
           </Button>
 
-          <p className="text-center text-sm text-zinc-400">
+          <p className="text-center text-sm text-muted">
             {mode === 'login' ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}{' '}
             <button
               type="button"
@@ -159,7 +159,7 @@ export default function TeacherAuth() {
                 setErr(null)
                 setNotice(null)
               }}
-              className="font-semibold text-violet-400 hover:text-violet-300"
+              className="font-semibold text-tone-violet hover:text-tone-violet"
             >
               {mode === 'login' ? 'Đăng ký ngay' : 'Đăng nhập'}
             </button>

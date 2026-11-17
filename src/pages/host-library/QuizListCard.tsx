@@ -30,19 +30,19 @@ export function QuizListCard({
 }) {
   return (
     <Card className="overflow-hidden p-0">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-900/40 px-5 py-4 sm:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface-2/40 px-5 py-4 sm:px-6">
         <StepTitle n={2}>Bộ câu hỏi của tôi</StepTitle>
         <Button variant="outline" size="sm" onClick={onCreateSample} disabled={busy}>
           + Tạo bộ mẫu
         </Button>
       </div>
-      <div className="border-b border-zinc-800/80 bg-zinc-900/20 px-5 py-3 sm:px-6">
-        <label className="flex cursor-pointer items-center gap-2.5 text-sm text-zinc-300 select-none">
+      <div className="border-b border-line/80 bg-surface-2/20 px-5 py-3 sm:px-6">
+        <label className="flex cursor-pointer items-center gap-2.5 text-sm text-ink-soft select-none">
           <input
             type="checkbox"
             checked={autoReveal}
             onChange={(e) => onAutoRevealChange(e.target.checked)}
-            className="h-4 w-4 rounded border-zinc-600 bg-zinc-800 text-violet-600 focus:ring-violet-500"
+            className="h-4 w-4 rounded border-line-strong bg-elevated text-violet-600 focus:ring-violet-500"
           />
           <span>Tự động công bố đáp án khi hết giờ (không cần bấm tay)</span>
         </label>
@@ -62,12 +62,12 @@ export function QuizListCard({
               return (
                 <li
                   key={q.id}
-                  className="hover-lift flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-[#16161b] p-4"
+                  className="hover-lift flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-surface-2 p-4"
                 >
                   <div className="min-w-0">
-                    <p className="truncate font-semibold text-white">{q.name}</p>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-zinc-400">
-                      <span className="rounded-md bg-violet-500/15 px-2 py-0.5 text-xs font-semibold text-violet-300 ring-1 ring-violet-500/30">
+                    <p className="truncate font-semibold text-ink">{q.name}</p>
+                    <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
+                      <span className="rounded-md bg-violet-500/15 px-2 py-0.5 text-xs font-semibold text-tone-violet ring-1 ring-violet-500/30">
                         {q.count} câu
                       </span>
                       <span>{new Date(q.created_at).toLocaleDateString('vi-VN')}</span>

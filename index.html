@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Học Vui — Trò chơi trắc nghiệm cả lớp</title>
+    <script>
+      (function () {
+        var stored = null
+        try {
+          stored = localStorage.getItem('hv_theme')
+        } catch {
+          // localStorage có thể bị chặn — bỏ qua, dùng hệ thống
+        }
+        var theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark'
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

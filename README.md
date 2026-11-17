@@ -2,7 +2,7 @@
 
 Giáo viên nhập bộ câu hỏi từ Excel, tạo phòng bằng mã 6 số; học sinh vào bằng mã + tên, trả lời theo timer, điểm tính theo trả lời đúng (1000 điểm/câu), có tổng hợp điểm + thống kê từng học sinh và xuất file Excel.
 
-**Vite + React 19 + TypeScript + Tailwind v4 + Supabase (Postgres) · không cần tài khoản đăng nhập.**
+**Vite + React 19 + TypeScript + Tailwind v4 + Supabase (Postgres) · học sinh không cần tài khoản; giáo viên đăng nhập bằng Supabase Auth.**
 
 ## Chạy local
 
@@ -38,6 +38,31 @@ npm run dev        # http://localhost:5173
 5. Bảng tổng hợp: xem/tải file Excel tổng hợp điểm và thống kê đúng theo từng câu.
    Phòng đã mở và kết quả lưu lại trong mục **Phòng đã mở**.
 
+## Giao diện sáng/tối & lối tắt cho giáo viên
+
+- **Sáng/tối**: nút ☀/🌙 trên header đổi giao diện toàn app ngay lập tức. Lựa chọn lưu ở
+  `localStorage['hv_theme']`. App chỉ đọc cài đặt hệ thống (`prefers-color-scheme`) ở lần mở đầu tiên;
+  các lần sau giữ nguyên lựa chọn đã lưu nên thay đổi cài đặt hệ thống về sau không được theo dõi.
+  Một script nhỏ trong `index.html` áp `data-theme` trước khi React tải nên không bị nháy màu khi reload.
+- **Nút Giáo viên**: trên header, dẫn tới `/host` (ẩn khi đang ở trong `/host*`). Đã đăng nhập thì
+  nhãn đổi thành **Quản lý đề** ở các trang ngoài `/host*`; chưa đăng nhập sẽ được chuyển tới `/host/login`.
+
+### Kiểm tra giao diện (thủ công)
+
+1. Bật/tắt theme ở `/`, `/join`, `/host/login`, `/host`, phòng host và phòng học sinh — chữ, nền,
+   viền đọc rõ ở cả hai theme; icon ☀/🌙 và `aria-label` đổi đúng.
+2. Header vừa một dòng, không xuống dòng ở bề rộng 360px và 375px trên `/`, `/join`, `/room/:code`
+   (các nút Giáo viên/Trang chủ chỉ hiện icon dưới `sm`).
+3. Reload ở bất kỳ trang nào — theme giữ nguyên lựa chọn. Mở tab ẩn danh lần đầu thì theo hệ thống.
+4. Mã QR ở phòng chờ host vẫn nền trắng, mã tối ở cả hai theme (bắt buộc để quét được).
+5. Nút **Giáo viên** hiện ở `/`, `/join` và phòng học sinh; ẩn trong `/host*`. Chưa đăng nhập bấm
+   vào → `/host/login`; sau khi đăng nhập, nhãn **Quản lý đề** hiện ở các trang ngoài `/host*`.
+6. Ở light mode, vào phòng với vai học sinh, chạm một đáp án và xác nhận lựa chọn đang chọn
+   (viền ring) nổi bật rõ ràng so với các đáp án còn lại.
+7. Chạy trọn một lượt host (tạo phòng → bắt đầu → công bố đáp án → kết thúc) và một lượt học sinh
+   (vào phòng → trả lời → xem công bố) ở cả hai theme; kiểm tra chữ trên câu hỏi, nút đáp án, timer,
+   bảng điểm và màn hình kết quả.
+
 ## Kiểm tra nhanh (khuyến nghị trước buổi học)
 
 ```bash
@@ -60,7 +85,9 @@ delete from public.quiz_sets where owner_token = 'smoketest_owner_token_0001';
 
 - Import repo → Framework Preset **Vite** → thêm env `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` → Deploy.
 - Dùng **HashRouter** nên không cần cấu hình rewrite (vào `/join` trực tiếp không bị 404).
-- Sau khi có domain: thêm domain vào Supabase **Authentication → URL Configuration** (không bắt buộc — app không dùng Auth, chỉ cần nó cho dashboard).
+- Sau khi có domain: thêm domain vào Supabase **Authentication → URL Configuration** (bắt buộc khi dùng
+  đăng nhập giáo viên: thêm domain vào *Site URL* / *Redirect URLs* để liên kết xác nhận email và
+  đăng nhập Google quay về đúng app).
 
 ## Cấu trúc
 
