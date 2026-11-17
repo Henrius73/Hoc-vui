@@ -54,6 +54,9 @@ npm run dev        # http://localhost:5173
 3. Mã QR ở phòng chờ host vẫn nền trắng, mã tối ở cả hai theme (bắt buộc để quét được).
 4. Nút **Giáo viên** hiện ở `/`, `/join` và phòng học sinh; ẩn trong `/host*`. Chưa đăng nhập bấm
    vào → `/host/login`; sau khi đăng nhập nhãn đổi thành **Quản lý đề**.
+5. Chạy trọn một lượt host (tạo phòng → bắt đầu → công bố đáp án → kết thúc) và một lượt học sinh
+   (vào phòng → trả lời → xem công bố) ở cả hai theme; kiểm tra chữ trên câu hỏi, nút đáp án, timer,
+   bảng điểm và màn hình kết quả.
 
 ## Kiểm tra nhanh (khuyến nghị trước buổi học)
 
