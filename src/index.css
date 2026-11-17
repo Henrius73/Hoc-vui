@@ -47,6 +47,7 @@
   --brand-from: #7c3aed;
   --brand-via: #a21caf;
   --brand-to: #c2410c;
+  --ring: #7c3aed;
 }
 
 @theme inline {
@@ -80,6 +81,14 @@ body {
     radial-gradient(600px 360px at 90% 0%, rgba(249, 115, 22, 0.12), transparent 55%),
     radial-gradient(500px 400px at 50% 110%, rgba(124, 58, 237, 0.12), transparent 60%);
   background-attachment: fixed;
+}
+
+/* Light mode: same wash structure, much subtler so the canvas stays near #f7f7fb */
+[data-theme="light"] body {
+  background-image:
+    radial-gradient(700px 420px at 15% -5%, rgba(124, 58, 237, 0.07), transparent 60%),
+    radial-gradient(600px 360px at 90% 0%, rgba(249, 115, 22, 0.05), transparent 55%),
+    radial-gradient(500px 400px at 50% 110%, rgba(124, 58, 237, 0.05), transparent 60%);
 }
 
 ::selection {
@@ -173,5 +182,5 @@ body {
 /* Thanh cuộn gọn */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-color: var(--muted, #cbd5e1) transparent;
 }

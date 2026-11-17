@@ -72,8 +72,9 @@ function Shell({ children }: { children: ReactNode }) {
               {theme === 'dark' ? <IconSun width={16} height={16} /> : <IconMoon width={16} height={16} />}
             </button>
             {!isHostArea && (
-              <Link to="/host" className={HEADER_LINK}>
-                <IconBoard width={16} height={16} /> {user ? 'Quản lý đề' : 'Giáo viên'}
+              <Link to="/host" className={HEADER_LINK} aria-label={user ? 'Quản lý đề' : 'Giáo viên'}>
+                <IconBoard width={16} height={16} />
+                <span className="hidden sm:inline">{user ? 'Quản lý đề' : 'Giáo viên'}</span>
               </Link>
             )}
             {isHostArea && user && (
@@ -87,8 +88,9 @@ function Shell({ children }: { children: ReactNode }) {
               </>
             )}
             {!isHome && (
-              <Link to="/" className={HEADER_LINK}>
-                <IconArrowLeft width={16} height={16} /> Trang chủ
+              <Link to="/" className={HEADER_LINK} aria-label="Trang chủ">
+                <IconArrowLeft width={16} height={16} />
+                <span className="hidden sm:inline">Trang chủ</span>
               </Link>
             )}
           </div>

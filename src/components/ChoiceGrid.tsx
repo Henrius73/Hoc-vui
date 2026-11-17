@@ -43,7 +43,7 @@ export function ChoiceGrid(props: InteractiveProps | DisplayProps) {
               onClick={() => onSelect(i)}
               disabled={disabled}
               className={`pop-in group flex min-h-[4.5rem] items-center gap-3 rounded-2xl px-4 py-3.5 text-left shadow-sm transition-all duration-200 ease-out disabled:cursor-default sm:text-lg ${bg} ${fg} ${
-                mine ? 'ring-4 ring-white/30 ring-offset-2 ring-offset-canvas' : ''
+                mine ? 'ring-4 ring-ink/40 ring-offset-2 ring-offset-canvas' : ''
               } ${!disabled ? 'active:scale-[0.985] hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110' : ''}`}
               style={{ animationDelay: `${i * 45}ms` } as CSSProperties}
             >
@@ -77,7 +77,7 @@ export function ChoiceGrid(props: InteractiveProps | DisplayProps) {
           <div
             key={i}
             className={`flex items-center justify-between gap-4 rounded-2xl p-4 shadow-sm transition-all sm:p-5 ${bg} ${fg} ${
-              reveal ? (isCorrect ? 'ring-4 ring-white/30' : 'opacity-80') : ''
+              reveal ? (isCorrect ? 'ring-4 ring-ink/40' : 'opacity-80') : ''
             }`}
           >
             <span className="flex min-w-0 items-center gap-3">
