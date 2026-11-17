@@ -1,15 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #050507;
+  color-scheme: dark;
+  --canvas: #050507;
   --surface: #121216;
-  --surface-2: #18181d;
+  --surface-2: #18181b;
+  --elevated: #27272a;
+  --line: #27272f;
+  --line-strong: #3f3f46;
   --ink: #f4f4f5;
+  --ink-soft: #d4d4d8;
   --muted: #a1a1aa;
-  --border: #27272f;
+  --subtle: #71717a;
+  --scrim: rgba(0, 0, 0, 0.7);
+  --tone-violet: #a78bfa;
+  --tone-emerald: #6ee7b7;
+  --tone-rose: #fda4af;
+  --tone-amber: #fcd34d;
+  --tone-sky: #7dd3fc;
   --ring: #a78bfa;
   --accent: #7c3aed;
   --accent-2: #f97316;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --canvas: #f7f7fb;
+  --surface: #ffffff;
+  --surface-2: #f4f4f7;
+  --elevated: #ececf1;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --ink: #18181b;
+  --ink-soft: #3f3f46;
+  --muted: #52525b;
+  --subtle: #71717a;
+  --scrim: rgba(0, 0, 0, 0.55);
+  --tone-violet: #6d28d9;
+  --tone-emerald: #047857;
+  --tone-rose: #be123c;
+  --tone-amber: #b45309;
+  --tone-sky: #0369a1;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-scrim: var(--scrim);
+  --color-tone-violet: var(--tone-violet);
+  --color-tone-emerald: var(--tone-emerald);
+  --color-tone-rose: var(--tone-rose);
+  --color-tone-amber: var(--tone-amber);
+  --color-tone-sky: var(--tone-sky);
 }
 
 body {
@@ -18,7 +68,7 @@ body {
   font-family: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
-  background-color: var(--bg);
+  background-color: var(--canvas);
   background-image:
     radial-gradient(700px 420px at 15% -5%, rgba(124, 58, 237, 0.22), transparent 60%),
     radial-gradient(600px 360px at 90% 0%, rgba(249, 115, 22, 0.12), transparent 55%),
