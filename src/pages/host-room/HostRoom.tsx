@@ -119,7 +119,7 @@ export default function HostRoom() {
         <div className="flex flex-wrap items-center gap-3">
           <div className="leading-tight">
             <p className="text-[11px] font-semibold tracking-[0.18em] text-subtle">Mã phòng</p>
-            <p className="font-mono text-2xl font-bold tracking-[0.18em] text-violet-300 sm:text-3xl">{state.code}</p>
+            <p className="font-mono text-2xl font-bold tracking-[0.18em] text-tone-violet sm:text-3xl">{state.code}</p>
           </div>
           <Button variant="outline" size="sm" onClick={copyLink} aria-label="Sao chép liên kết phòng">
             <IconCopy width={16} height={16} />

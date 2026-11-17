@@ -54,7 +54,7 @@ export function QuestionPlayView({
           className="w-full max-w-[15rem] sm:w-64"
         />
         <span className="shrink-0 rounded-full border border-line-strong bg-surface-2/80 px-3.5 py-1.5 text-sm font-semibold text-ink-soft shadow-sm">
-          {playerName} <span className="text-subtle">·</span> <span className="text-violet-300">{myScore} đ</span>
+          {playerName} <span className="text-subtle">·</span> <span className="text-tone-violet">{myScore} đ</span>
         </span>
       </div>
 
@@ -63,7 +63,7 @@ export function QuestionPlayView({
       {!reveal && (
         <div className="rounded-2xl border border-line bg-surface px-4 py-3 shadow-sm">
           <div className="flex items-center justify-between text-sm font-semibold">
-            <span className={`inline-flex items-center gap-1.5 ${urgent ? 'text-rose-400 timer-pulse' : 'text-ink-soft'}`}>
+            <span className={`inline-flex items-center gap-1.5 ${urgent ? 'text-tone-rose timer-pulse' : 'text-ink-soft'}`}>
               <IconClock width={16} height={16} />
               {timedOut ? 'Đã hết giờ' : `Còn ${secs}s`}
             </span>
@@ -100,7 +100,7 @@ export function QuestionPlayView({
       {submitError && <ErrorNote>{submitError}</ErrorNote>}
 
       {phase === 'question' && answered && !submitError && (
-        <div className="flex items-center justify-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm font-semibold text-violet-100">
+        <div className="flex items-center justify-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm font-semibold text-tone-violet">
           <span className="relative flex h-2 w-2" aria-hidden>
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-400" />
@@ -122,11 +122,11 @@ export function QuestionPlayView({
           <div className="text-center">
             {mine?.answered ? (
               mine.is_correct ? (
-                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-bold text-emerald-300 ring-1 ring-emerald-500/30">
+                <p className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-4 py-2 font-bold text-tone-emerald ring-1 ring-emerald-500/30">
                   <IconCheck width={20} height={20} /> Chính xác! +{mine.points} điểm
                 </p>
               ) : (
-                <p className="inline-flex items-center gap-2 rounded-full bg-rose-500/15 px-4 py-2 font-bold text-rose-300 ring-1 ring-rose-500/30">
+                <p className="inline-flex items-center gap-2 rounded-full bg-rose-500/15 px-4 py-2 font-bold text-tone-rose ring-1 ring-rose-500/30">
                   <IconX width={20} height={20} /> Chưa đúng — 0 điểm
                 </p>
               )

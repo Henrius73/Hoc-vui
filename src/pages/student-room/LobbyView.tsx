@@ -23,7 +23,7 @@ export function LobbyView({
           <h1 className="mt-4 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Đang chờ bắt đầu</h1>
           <p className="mt-2 text-sm text-muted">
             Phòng{' '}
-            <b className="rounded-md bg-elevated px-2 py-0.5 font-mono text-base text-violet-300 ring-1 ring-line-strong">
+            <b className="rounded-md bg-elevated px-2 py-0.5 font-mono text-base text-tone-violet ring-1 ring-line-strong">
               {code}
             </b>
             {' · '}Bạn là <b className="text-ink">{playerName}</b>
@@ -43,7 +43,7 @@ export function LobbyView({
                 key={p.id}
                 className={`rounded-full border px-3.5 py-1.5 text-sm font-medium ${
                   p.id === playerId
-                    ? 'border-violet-500/40 bg-violet-500/15 text-violet-200'
+                    ? 'border-violet-500/40 bg-violet-500/15 text-tone-violet'
                     : 'border-line-strong bg-elevated/70 text-ink-soft'
                 }`}
               >

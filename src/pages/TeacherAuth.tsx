@@ -92,7 +92,7 @@ export default function TeacherAuth() {
           )}
 
           {notice && (
-            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-3 text-sm font-medium text-emerald-200">
+            <p className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-3 text-sm font-medium text-tone-emerald">
               {notice}
             </p>
           )}
@@ -159,7 +159,7 @@ export default function TeacherAuth() {
                 setErr(null)
                 setNotice(null)
               }}
-              className="font-semibold text-violet-400 hover:text-violet-300"
+              className="font-semibold text-tone-violet hover:text-tone-violet"
             >
               {mode === 'login' ? 'Đăng ký ngay' : 'Đăng nhập'}
             </button>

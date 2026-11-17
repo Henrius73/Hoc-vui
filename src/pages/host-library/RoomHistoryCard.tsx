@@ -13,9 +13,9 @@ export type RoomItem = {
 
 const PHASE_LABEL: Record<Phase, { text: string; cls: string }> = {
   lobby: { text: 'Đang chờ', cls: 'bg-elevated text-ink-soft ring-line-strong' },
-  question: { text: 'Đang chơi', cls: 'bg-violet-500/15 text-violet-300 ring-violet-500/30' },
-  reveal: { text: 'Đã công bố', cls: 'bg-amber-500/15 text-amber-300 ring-amber-500/30' },
-  finished: { text: 'Đã kết thúc', cls: 'bg-emerald-500/15 text-emerald-300 ring-emerald-500/30' },
+  question: { text: 'Đang chơi', cls: 'bg-violet-500/15 text-tone-violet ring-violet-500/30' },
+  reveal: { text: 'Đã công bố', cls: 'bg-amber-500/15 text-tone-amber ring-amber-500/30' },
+  finished: { text: 'Đã kết thúc', cls: 'bg-emerald-500/15 text-tone-emerald ring-emerald-500/30' },
 }
 
 export function RoomHistoryCard({

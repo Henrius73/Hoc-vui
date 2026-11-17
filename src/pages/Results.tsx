@@ -118,9 +118,9 @@ export default function Results() {
                       </span>
                     </td>
                     <td className="px-4 py-3 font-medium text-ink sm:px-6">{p.name}</td>
-                    <td className="px-4 py-3 text-right font-bold tabular-nums text-violet-300 sm:px-6">{p.score}</td>
-                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-emerald-400 sm:px-6">{correct}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-rose-400 sm:px-6">{answered - correct}</td>
+                    <td className="px-4 py-3 text-right font-bold tabular-nums text-tone-violet sm:px-6">{p.score}</td>
+                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-tone-emerald sm:px-6">{correct}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-tone-rose sm:px-6">{answered - correct}</td>
                     <td className="px-4 py-3 text-right tabular-nums text-subtle sm:px-6">{state.total - answered}</td>
                   </tr>
                 )
@@ -163,7 +163,7 @@ export default function Results() {
               <h3 className="mb-3 text-sm font-semibold tracking-wide text-muted">
                 Phân bố lựa chọn — câu {state.question.idx}
                 {state.phase === 'reveal' && (
-                  <span className="ml-2 font-semibold text-emerald-400">
+                  <span className="ml-2 font-semibold text-tone-emerald">
                     (đúng: {CHOICE_LABELS[state.question.correct ?? 0]})
                   </span>
                 )}

@@ -84,7 +84,7 @@ body {
 
 ::selection {
   background: rgba(124, 58, 237, 0.35);
-  color: #fff;
+  color: var(--ink);
 }
 
 /* Focus rõ (WCAG 2.4.7) */

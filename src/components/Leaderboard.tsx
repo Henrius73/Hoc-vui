@@ -31,7 +31,7 @@ export function Leaderboard({
               compact ? 'py-2' : 'py-2.5'
             } ${
               isMe
-                ? 'bg-violet-500/15 font-semibold text-violet-100 ring-1 ring-violet-500/30'
+                ? 'bg-violet-500/15 font-semibold text-tone-violet ring-1 ring-violet-500/30'
                 : 'bg-elevated/50 text-ink-soft'
             }`}
           >

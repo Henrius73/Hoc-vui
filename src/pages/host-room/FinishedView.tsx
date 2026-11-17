@@ -13,7 +13,7 @@ export function FinishedView({
 }) {
   return (
     <Card className="fade-up space-y-5 p-8 text-center sm:p-10">
-      <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-amber-500/15 text-amber-400 ring-1 ring-amber-500/30">
+      <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-amber-500/15 text-tone-amber ring-1 ring-amber-500/30">
         <IconTrophy width={34} height={34} />
       </div>
       <div>

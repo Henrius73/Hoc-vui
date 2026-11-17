@@ -39,7 +39,7 @@ export function QuestionView({
         <div className={`flex items-center gap-2 rounded-xl px-3 py-1.5 ${urgent ? 'bg-rose-500/15' : 'bg-elevated/80'}`}>
           <span className="text-xs font-semibold tracking-wider text-muted">Còn lại</span>
           <span
-            className={`font-mono text-3xl font-bold leading-none ${urgent ? 'text-rose-400 timer-pulse' : 'text-ink'}`}
+            className={`font-mono text-3xl font-bold leading-none ${urgent ? 'text-tone-rose timer-pulse' : 'text-ink'}`}
             aria-hidden
           >
             {secs}s
@@ -69,7 +69,7 @@ export function QuestionView({
                   style={{ width: `${Math.min(100, (answeredCount / playerCount) * 100)}%` }}
                 />
               </span>
-              <span className="text-xs font-semibold tabular-nums text-emerald-300">
+              <span className="text-xs font-semibold tabular-nums text-tone-emerald">
                 {Math.round((answeredCount / playerCount) * 100)}%
               </span>
             </span>

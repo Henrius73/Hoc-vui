@@ -29,7 +29,7 @@ export function LobbyView({
               {code}
             </p>
             <p className="mt-3 max-w-xs text-sm text-muted">
-              Học sinh mở trang chủ, nhập <b className="font-mono text-violet-300">mã 6 số</b> hoặc quét mã QR để vào phòng.
+              Học sinh mở trang chủ, nhập <b className="font-mono text-tone-violet">mã 6 số</b> hoặc quét mã QR để vào phòng.
             </p>
           </div>
           <div className="shrink-0 rounded-2xl bg-white p-3 shadow-xl shadow-black/30 ring-1 ring-white/20">

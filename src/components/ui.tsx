@@ -9,7 +9,7 @@ const BTN = {
   dark: 'bg-ink text-canvas shadow-lg hover:bg-ink-soft',
   outline:
     'bg-transparent text-ink-soft border border-line-strong hover:border-violet-500 hover:text-ink hover:bg-ink/5',
-  danger: 'bg-transparent text-rose-400 border border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300',
+  danger: 'bg-transparent text-tone-rose border border-rose-500/40 hover:bg-rose-500/10 hover:text-tone-rose',
   ghost: 'bg-transparent text-muted hover:bg-ink/5 hover:text-ink',
 } as const
 
@@ -65,7 +65,7 @@ export function ErrorNote({ children }: { children: ReactNode }) {
   return (
     <p
       role="alert"
-      className="flex items-start gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-3 text-sm font-medium text-rose-200"
+      className="flex items-start gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-3 text-sm font-medium text-tone-rose"
     >
       <span aria-hidden className="mt-0.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-rose-400" />
       <span>{children}</span>
@@ -120,7 +120,7 @@ export function PageHeader({
     <div className="flex flex-wrap items-end justify-between gap-4">
       <div>
         {eyebrow && (
-          <p className="mb-1 text-xs font-semibold tracking-[0.16em] text-violet-400">{eyebrow}</p>
+          <p className="mb-1 text-xs font-semibold tracking-[0.16em] text-tone-violet">{eyebrow}</p>
         )}
         <h1 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{title}</h1>
         {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted">{desc}</p>}
@@ -134,7 +134,7 @@ export function ConnectionBanner({ message }: { message: string }) {
   return (
     <div
       role="status"
-      className="flex items-center justify-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3.5 py-2 text-xs font-medium text-amber-200 sm:text-sm"
+      className="flex items-center justify-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3.5 py-2 text-xs font-medium text-tone-amber sm:text-sm"
     >
       <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" aria-hidden />
       <span>Mất kết nối tạm thời ({message}) — đang tự động thử lại...</span>

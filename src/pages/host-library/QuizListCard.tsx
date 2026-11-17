@@ -67,7 +67,7 @@ export function QuizListCard({
                   <div className="min-w-0">
                     <p className="truncate font-semibold text-ink">{q.name}</p>
                     <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
-                      <span className="rounded-md bg-violet-500/15 px-2 py-0.5 text-xs font-semibold text-violet-300 ring-1 ring-violet-500/30">
+                      <span className="rounded-md bg-violet-500/15 px-2 py-0.5 text-xs font-semibold text-tone-violet ring-1 ring-violet-500/30">
                         {q.count} câu
                       </span>
                       <span>{new Date(q.created_at).toLocaleDateString('vi-VN')}</span>

@@ -11,7 +11,7 @@ export default function Home() {
 
       <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         <section className="fade-up space-y-6 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-violet-200">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-tone-violet">
             <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
             Trò chơi trắc nghiệm lớp học
           </div>
@@ -28,13 +28,13 @@ export default function Home() {
 
           <ul className="mx-auto grid max-w-lg grid-cols-1 gap-3 text-left sm:grid-cols-2 lg:mx-0">
             <li className="flex items-center gap-3 rounded-2xl border border-line/80 bg-surface/80 px-4 py-3">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-500/15 text-tone-emerald ring-1 ring-emerald-500/30">
                 <IconUsers width={18} height={18} />
               </span>
               <span className="text-sm font-medium text-ink-soft">Vào ngay không cần tài khoản</span>
             </li>
             <li className="flex items-center gap-3 rounded-2xl border border-line/80 bg-surface/80 px-4 py-3">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-amber-300 ring-1 ring-amber-500/30">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-tone-amber ring-1 ring-amber-500/30">
                 <IconTrophy width={18} height={18} />
               </span>
               <span className="text-sm font-medium text-ink-soft">Đúng mỗi câu +1000 điểm</span>

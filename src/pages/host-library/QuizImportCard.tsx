@@ -99,11 +99,11 @@ export function QuizImportCard({
                 />
               </label>
               <div className="flex flex-wrap items-center gap-2 text-sm">
-                <span className="rounded-full bg-emerald-500/15 px-3 py-1 font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
+                <span className="rounded-full bg-emerald-500/15 px-3 py-1 font-semibold text-tone-emerald ring-1 ring-emerald-500/30">
                   {preview.questions.length} câu hợp lệ
                 </span>
                 {preview.errors.length > 0 && (
-                  <span className="rounded-full bg-rose-500/15 px-3 py-1 font-semibold text-rose-300 ring-1 ring-rose-500/30">
+                  <span className="rounded-full bg-rose-500/15 px-3 py-1 font-semibold text-tone-rose ring-1 ring-rose-500/30">
                     {preview.errors.length} lỗi
                   </span>
                 )}
@@ -127,7 +127,7 @@ export function QuizImportCard({
             </ul>
 
             {preview.errors.length > 0 && (
-              <ul className="space-y-1 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+              <ul className="space-y-1 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-tone-rose">
                 {preview.errors.map((err, i) => (
                   <li key={i} className="flex gap-2">
                     <span aria-hidden>•</span>

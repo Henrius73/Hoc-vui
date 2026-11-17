@@ -47,7 +47,7 @@ export function JoinRoomForm({
   return (
     <form onSubmit={join} className="space-y-4">
       {existing && (
-        <div className="fade-up space-y-2.5 rounded-xl border border-violet-500/30 bg-violet-500/10 p-3.5 text-sm text-violet-100">
+        <div className="fade-up space-y-2.5 rounded-xl border border-violet-500/30 bg-violet-500/10 p-3.5 text-sm text-tone-violet">
           <p>
             Bạn đã từng vào phòng <b>{trimmedCode}</b> với tên <b>{existing.name}</b>.
           </p>
