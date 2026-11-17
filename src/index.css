@@ -18,6 +18,9 @@
   --tone-rose: #fda4af;
   --tone-amber: #fcd34d;
   --tone-sky: #7dd3fc;
+  --brand-from: #a78bfa;
+  --brand-via: #e879f9;
+  --brand-to: #fb923c;
   --ring: #a78bfa;
   --accent: #7c3aed;
   --accent-2: #f97316;
@@ -41,6 +44,9 @@
   --tone-rose: #be123c;
   --tone-amber: #b45309;
   --tone-sky: #0369a1;
+  --brand-from: #7c3aed;
+  --brand-via: #a21caf;
+  --brand-to: #c2410c;
 }
 
 @theme inline {

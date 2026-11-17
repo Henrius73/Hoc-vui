@@ -55,7 +55,7 @@ function Shell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
           <Link to="/" className="group inline-flex items-center rounded-lg focus-visible:outline-offset-4">
             <span className="text-xl font-extrabold tracking-tight sm:text-2xl">
-              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-[linear-gradient(90deg,var(--brand-from),var(--brand-via),var(--brand-to))] bg-clip-text text-transparent">
                 Học Vui
               </span>
             </span>
