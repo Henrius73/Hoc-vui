@@ -5,7 +5,7 @@ export const RANK_TONE = [
   'bg-zinc-300 text-zinc-900 ring-1 ring-zinc-200/40',
   'bg-orange-400 text-orange-950 ring-1 ring-orange-300/40',
 ]
-export const RANK_REST = 'bg-zinc-700 text-zinc-200'
+export const RANK_REST = 'bg-line-strong text-ink-soft'
 
 export function Leaderboard({
   players,
@@ -32,7 +32,7 @@ export function Leaderboard({
             } ${
               isMe
                 ? 'bg-violet-500/15 font-semibold text-violet-100 ring-1 ring-violet-500/30'
-                : 'bg-zinc-800/50 text-zinc-300'
+                : 'bg-elevated/50 text-ink-soft'
             }`}
           >
             <span

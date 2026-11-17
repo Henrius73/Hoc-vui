@@ -6,11 +6,11 @@ const BTN = {
   success:
     'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500',
   amber: 'bg-amber-500 text-amber-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400',
-  dark: 'bg-zinc-100 text-zinc-900 shadow-lg hover:bg-white',
+  dark: 'bg-ink text-canvas shadow-lg hover:bg-ink-soft',
   outline:
-    'bg-transparent text-zinc-200 border border-zinc-700 hover:border-violet-500 hover:text-white hover:bg-white/5',
+    'bg-transparent text-ink-soft border border-line-strong hover:border-violet-500 hover:text-ink hover:bg-ink/5',
   danger: 'bg-transparent text-rose-400 border border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300',
-  ghost: 'bg-transparent text-zinc-400 hover:bg-white/5 hover:text-zinc-100',
+  ghost: 'bg-transparent text-muted hover:bg-ink/5 hover:text-ink',
 } as const
 
 const SIZE = {
@@ -42,7 +42,7 @@ export function Button({ variant = 'primary', size = 'md', className = '', ...re
 export function Card({ children, className = '', ...rest }: HTMLAttributes<HTMLElement>) {
   return (
     <section
-      className={`rounded-2xl border border-zinc-800/80 bg-[#121216]/90 shadow-lg shadow-black/20 backdrop-blur-sm ${className}`}
+      className={`rounded-2xl border border-line/80 bg-surface/90 shadow-lg shadow-black/20 backdrop-blur-sm ${className}`}
       {...rest}
     >
       {children}
@@ -52,7 +52,7 @@ export function Card({ children, className = '', ...rest }: HTMLAttributes<HTMLE
 
 export function StepTitle({ n, children }: { n: number; children: ReactNode }) {
   return (
-    <h2 className="flex items-center gap-2.5 text-base font-semibold text-white sm:text-lg">
+    <h2 className="flex items-center gap-2.5 text-base font-semibold text-ink sm:text-lg">
       <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-violet-600 text-xs font-bold text-white shadow-sm shadow-violet-600/30">
         {n}
       </span>
@@ -77,7 +77,7 @@ export function Loading({ label = 'Đang tải...' }: { label?: string }) {
   return (
     <div role="status" aria-busy="true" className="mx-auto max-w-md px-4 py-16 text-center">
       <div className="mx-auto mb-4 h-11 w-11 animate-pulse rounded-2xl bg-gradient-to-br from-violet-600/40 to-fuchsia-500/30 ring-1 ring-white/10" />
-      <p className="text-sm font-medium text-zinc-400">{label}</p>
+      <p className="text-sm font-medium text-muted">{label}</p>
     </div>
   )
 }
@@ -92,14 +92,14 @@ export function EmptyState({
   action?: ReactNode
 }) {
   return (
-    <div role="status" className="rounded-xl border border-dashed border-zinc-700 bg-zinc-900/40 px-4 py-8 text-center">
-      <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-800/80 text-zinc-400 ring-1 ring-zinc-700">
+    <div role="status" className="rounded-xl border border-dashed border-line-strong bg-surface-2/40 px-4 py-8 text-center">
+      <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-elevated/80 text-muted ring-1 ring-line-strong">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
           <path d="M4 7h16M7 12h10M9 17h6" strokeLinecap="round" />
         </svg>
       </div>
-      <h3 className="text-sm font-semibold text-zinc-100">{title}</h3>
-      {hint && <p className="mx-auto mt-1 max-w-sm text-sm text-zinc-500">{hint}</p>}
+      <h3 className="text-sm font-semibold text-ink">{title}</h3>
+      {hint && <p className="mx-auto mt-1 max-w-sm text-sm text-subtle">{hint}</p>}
       {action && <div className="mt-4 flex justify-center">{action}</div>}
     </div>
   )
@@ -122,8 +122,8 @@ export function PageHeader({
         {eyebrow && (
           <p className="mb-1 text-xs font-semibold tracking-[0.16em] text-violet-400">{eyebrow}</p>
         )}
-        <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{title}</h1>
-        {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-400">{desc}</p>}
+        <h1 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{title}</h1>
+        {desc && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted">{desc}</p>}
       </div>
       {action && <div className="flex shrink-0 flex-wrap items-center gap-2">{action}</div>}
     </div>
@@ -179,19 +179,19 @@ export function ConfirmDialog({
       role="dialog"
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-scrim px-4 backdrop-blur-sm"
       onClick={() => {
         if (!busy) onCancel()
       }}
     >
       <div
-        className="pop-in w-full max-w-sm rounded-2xl border border-zinc-800 bg-[#121216] p-6 shadow-2xl shadow-black/60"
+        className="pop-in w-full max-w-sm rounded-2xl border border-line bg-surface p-6 shadow-2xl shadow-black/60"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="confirm-dialog-title" className="text-lg font-bold text-white">
+        <h2 id="confirm-dialog-title" className="text-lg font-bold text-ink">
           {title}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400">{message}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{message}</p>
         <div className="mt-6 flex justify-end gap-2.5">
           <Button variant="outline" size="sm" onClick={onCancel} disabled={busy}>
             {cancelLabel}

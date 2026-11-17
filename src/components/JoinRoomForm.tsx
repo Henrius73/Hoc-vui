@@ -65,7 +65,7 @@ export function JoinRoomForm({
 
       <div className="space-y-4">
         <label className="block">
-          <span className="text-sm font-medium text-zinc-200">Mã phòng 6 số</span>
+          <span className="text-sm font-medium text-ink-soft">Mã phòng 6 số</span>
           <input
             value={code}
             onChange={(e) => {
@@ -77,12 +77,12 @@ export function JoinRoomForm({
             autoFocus={autoFocusCode}
             placeholder="000000"
             aria-label="Mã phòng 6 chữ số"
-            className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3 py-3 text-center font-mono text-3xl font-bold tracking-[0.35em] text-white placeholder:text-zinc-600 transition-colors focus:border-violet-500 focus:ring-0"
+            className="mt-1.5 w-full rounded-xl border border-line-strong bg-surface-2 px-3 py-3 text-center font-mono text-3xl font-bold tracking-[0.35em] text-ink placeholder:text-subtle transition-colors focus:border-violet-500 focus:ring-0"
           />
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium text-zinc-200">
+          <span className="text-sm font-medium text-ink-soft">
             {existing ? 'Hoặc nhập tên mới để tham gia lại' : 'Tên của bạn'}
           </span>
           <input
@@ -95,9 +95,9 @@ export function JoinRoomForm({
             }}
             placeholder="Ví dụ: Minh An"
             maxLength={20}
-            className="mt-1.5 w-full rounded-xl border border-zinc-700 bg-[#18181d] px-3.5 py-3 text-white placeholder:text-zinc-500 transition-colors focus:border-violet-500 focus:ring-0"
+            className="mt-1.5 w-full rounded-xl border border-line-strong bg-surface-2 px-3.5 py-3 text-ink placeholder:text-subtle transition-colors focus:border-violet-500 focus:ring-0"
           />
-          <span className="mt-1.5 block text-xs text-zinc-500">Tối đa 20 ký tự, hiển thị với cả lớp</span>
+          <span className="mt-1.5 block text-xs text-subtle">Tối đa 20 ký tự, hiển thị với cả lớp</span>
         </label>
       </div>
 

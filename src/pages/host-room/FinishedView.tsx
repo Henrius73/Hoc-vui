@@ -17,10 +17,10 @@ export function FinishedView({
         <IconTrophy width={34} height={34} />
       </div>
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">Ván chơi đã kết thúc</h1>
-        <p className="mt-2 text-zinc-400">
-          Tổng hợp điểm và thống kê của <b className="text-zinc-200">{playerCount}</b> học sinh ·{' '}
-          <b className="text-zinc-200">{total}</b> câu hỏi
+        <h1 className="text-3xl font-bold tracking-tight text-ink">Ván chơi đã kết thúc</h1>
+        <p className="mt-2 text-muted">
+          Tổng hợp điểm và thống kê của <b className="text-ink-soft">{playerCount}</b> học sinh ·{' '}
+          <b className="text-ink-soft">{total}</b> câu hỏi
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-3">

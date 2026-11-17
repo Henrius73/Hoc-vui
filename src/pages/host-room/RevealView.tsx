@@ -31,7 +31,7 @@ export function RevealView({
         <QuestionProgress current={question.idx} total={total} className="w-40" />
       </div>
 
-      <h1 className="text-center text-2xl font-bold leading-snug text-white sm:text-4xl lg:text-5xl">
+      <h1 className="text-center text-2xl font-bold leading-snug text-ink sm:text-4xl lg:text-5xl">
         {question.body}
       </h1>
 

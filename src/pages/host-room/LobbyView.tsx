@@ -24,11 +24,11 @@ export function LobbyView({
       <div className="relative space-y-6 px-6 py-8 sm:px-10 sm:py-10">
         <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
           <div>
-            <p className="text-sm font-semibold tracking-[0.22em] text-zinc-500">Mã tham gia</p>
-            <p className="mt-2 font-mono text-6xl font-bold tracking-[0.14em] text-white sm:text-7xl">
+            <p className="text-sm font-semibold tracking-[0.22em] text-subtle">Mã tham gia</p>
+            <p className="mt-2 font-mono text-6xl font-bold tracking-[0.14em] text-ink sm:text-7xl">
               {code}
             </p>
-            <p className="mt-3 max-w-xs text-sm text-zinc-400">
+            <p className="mt-3 max-w-xs text-sm text-muted">
               Học sinh mở trang chủ, nhập <b className="font-mono text-violet-300">mã 6 số</b> hoặc quét mã QR để vào phòng.
             </p>
           </div>
@@ -37,17 +37,17 @@ export function LobbyView({
           </div>
         </div>
 
-        <div className="mx-auto max-w-2xl rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-line bg-surface-2/50 p-4">
           {players.length === 0 ? (
             <EmptyState title="Chưa có học sinh nào" hint="Hãy chiếu mã phòng hoặc QR này để cả lớp cùng tham gia" />
           ) : (
             <>
-              <p className="mb-3 text-sm font-medium text-zinc-400">Đã vào phòng ({players.length})</p>
+              <p className="mb-3 text-sm font-medium text-muted">Đã vào phòng ({players.length})</p>
               <ul className="flex flex-wrap justify-center gap-2">
                 {players.map((p) => (
                   <li
                     key={p.id}
-                    className="pop-in rounded-full border border-zinc-700 bg-zinc-800/80 px-3.5 py-1.5 text-sm font-medium text-zinc-200 shadow-sm"
+                    className="pop-in rounded-full border border-line-strong bg-elevated/80 px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-sm"
                   >
                     {p.name}
                   </li>

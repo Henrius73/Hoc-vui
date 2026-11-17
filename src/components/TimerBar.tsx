@@ -14,7 +14,7 @@ export function TimerBar({
   return (
     <div
       aria-hidden
-      className={`${heightClass} overflow-hidden rounded-full bg-zinc-800 ring-1 ring-inset ring-zinc-700/70`}
+      className={`${heightClass} overflow-hidden rounded-full bg-elevated ring-1 ring-inset ring-line-strong/70`}
     >
       <div
         className={`h-full rounded-full transition-all duration-200 ${urgent ? 'bg-rose-500' : 'bg-violet-500'}`}
